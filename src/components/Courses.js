@@ -7,9 +7,9 @@ class Courses extends Component {
   render() {
     return (
       <Fragment>
-        <Navbar />
         <Sidebar />
-        <section class='container'>
+        <section className='content-container'>
+          <Navbar />
           Courses
         </section>
       </Fragment>

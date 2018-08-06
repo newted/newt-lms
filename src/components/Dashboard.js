@@ -8,9 +8,9 @@ class Dashboard extends Component {
   render() {
     return (
       <Fragment>
-        <Navbar />
         <Sidebar />
-        <section class='container'>
+        <section className='content-container'>
+          <Navbar />
           Dashboard
         </section>
       </Fragment>
