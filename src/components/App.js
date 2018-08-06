@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+// API
+import { handleInitialData } from '../actions/shared'
 // Components
 import Dashboard from './Dashboard'
 import Courses from './Courses'
 
 class App extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props
+
+    dispatch(handleInitialData())
+  }
+
   render() {
     return (
       <Router>
@@ -19,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect()(App)
