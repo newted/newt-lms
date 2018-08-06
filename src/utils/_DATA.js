@@ -56,3 +56,9 @@ let courses = {
     school: 'School of Business'
   },
 }
+
+export function _getCourses() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({...courses}), 1000)
+  })
+}
