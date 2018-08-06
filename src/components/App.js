@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+// Components
 import Dashboard from './Dashboard'
+import Courses from './Courses'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Dashboard />
-      </div>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path='/' exact component={ Dashboard } />
+            <Route path='/courses' component={ Courses } />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
