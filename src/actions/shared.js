@@ -4,7 +4,7 @@ import { receiveCourses } from './courses'
 export function handleInitialData() {
   return (dispatch) => {
     return getInitialData()
-      .then((courses) => {
+      .then(({courses}) => {
         dispatch(receiveCourses(courses))
       })
   }
