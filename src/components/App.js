@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading'
 // API
 import { handleInitialData } from '../actions/shared'
 // Components
@@ -17,15 +18,27 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="app-container">
-          <Switch>
-            <Route path='/' exact component={ Dashboard } />
-            <Route path='/courses' component={ Courses } />
-          </Switch>
-        </div>
+        <Fragment>
+          <LoadingBar />
+          <div className="app-container">
+            { this.props.loading === true
+              ? null
+              : <Switch>
+                  <Route path='/' exact component={ Dashboard } />
+                  <Route path='/courses' component={ Courses } />
+                </Switch>
+            }
+          </div>
+        </Fragment>
       </Router>
     );
   }
 }
 
-export default connect()(App)
+function mapStateToProps({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
