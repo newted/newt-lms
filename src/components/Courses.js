@@ -3,18 +3,22 @@ import { connect } from 'react-redux'
 // Components
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
+import CourseCard from './CourseCard'
 
 class Courses extends Component {
   render() {
-    const { courses, authedUser } = this.props
-    console.log(courses, authedUser)
-    
+    const { courses } = this.props
+
     return (
       <Fragment>
         <Sidebar />
         <section className='content-container'>
           <Navbar />
-          Courses
+          <div className='courses-container'>
+            { Object.keys(courses).map((course) => (
+              <CourseCard key={ course }/>
+            ))}
+          </div>
         </section>
       </Fragment>
     )

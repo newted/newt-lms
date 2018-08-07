@@ -56,3 +56,20 @@ a {
   flex-direction: column;
   width: 82%;
 }
+
+.courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.course-card {
+  display: flex;
+  width: 25%;
+  height: 100px;
+  margin: 2%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2)
+}
