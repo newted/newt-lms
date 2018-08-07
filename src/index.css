@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'avenir';
 }
 
 ul {
@@ -34,7 +34,7 @@ a {
   height: 100vh;
   width: 18%;
   min-width: 200px;
-  background: #38ceff;
+  background: #38ceff; /* lightBlue */
 }
 
 .sidebar-navlinks {
@@ -59,17 +59,46 @@ a {
 
 .courses-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   padding: 1rem;
+}
+
+.header {
+  font-size: 1.75rem;
+  margin-left: 2%;
+  margin-bottom: 1rem;
+}
+
+.courses-card-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .course-card {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 25%;
+  min-width: 200px;
   height: 100px;
   margin: 2%;
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 1rem;
-  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2)
+  box-shadow: 0 10px 40px -10px rgba(0,64,128,.35);
+  background-color: #ffb294;
+}
+
+.course-card-shortname {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin: .5rem 0rem;
+}
+
+.course-card-name {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  margin: .5rem 0rem;
 }

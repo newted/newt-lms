@@ -15,9 +15,12 @@ class Courses extends Component {
         <section className='content-container'>
           <Navbar />
           <div className='courses-container'>
-            { Object.keys(courses).map((course) => (
-              <CourseCard key={ course }/>
-            ))}
+            <h3 className='header'>Courses</h3>
+            <div className='courses-card-container'>
+              { Object.keys(courses).map((course) => (
+                <CourseCard key={ course } id={ course }/>
+              ))}
+            </div>
           </div>
         </section>
       </Fragment>
