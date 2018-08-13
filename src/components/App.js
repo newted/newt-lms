@@ -7,6 +7,7 @@ import { handleInitialData } from '../actions/shared'
 // Components
 import Dashboard from './Dashboard'
 import Courses from './Courses'
+import CoursePage from './CoursePage'
 
 class App extends Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class App extends Component {
               : <Switch>
                   <Route path='/' exact component={ Dashboard } />
                   <Route path='/courses' component={ Courses } />
+                  <Route path='/course' component={ CoursePage } />
                 </Switch>
             }
           </div>

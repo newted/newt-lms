@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class CourseCard extends Component {
   render() {
     const { courseShortName, courseName, courseIcon } = this.props
 
     return (
-      <div className='course-card'>
-        <div className='course-card--header'>
-          <div className='course-card--icon'>
-            { courseIcon }
+      <Link to='/course' className='course-card'>
+          <div className='course-card--header'>
+            <div className='course-card--icon'>
+              { courseIcon }
+            </div>
           </div>
-        </div>
-        <div className='course-card-body'>
-          <div className='course-card--shortname'>
-            { courseShortName }
+          <div className='course-card-body'>
+            <div className='course-card--shortname'>
+              { courseShortName }
+            </div>
+            <div className='course-card--name'>
+              { courseName }
+            </div>
           </div>
-          <div className='course-card--name'>
-            { courseName }
-          </div>
-        </div>
-      </div>
+      </Link>
     )
   }
 }
