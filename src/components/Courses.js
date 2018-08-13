@@ -12,14 +12,16 @@ class Courses extends Component {
     return (
       <Fragment>
         <Sidebar />
-        <section className='content-container'>
+        <section className='main-container'>
           <Navbar />
-          <div className='courses-container'>
-            <h3 className='header'>Courses</h3>
-            <div className='courses-card-container'>
-              { Object.keys(courses).map((course) => (
-                <CourseCard key={ course } id={ course }/>
-              ))}
+          <div className='content-container'>
+            <div className='courses-container'>
+              <h3 className='header'>Courses</h3>
+              <div className='courses-card-container'>
+                { Object.keys(courses).map((course) => (
+                  <CourseCard key={ course } id={ course }/>
+                ))}
+              </div>
             </div>
           </div>
         </section>

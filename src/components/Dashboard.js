@@ -9,9 +9,11 @@ class Dashboard extends Component {
     return (
       <Fragment>
         <Sidebar />
-        <section className='content-container'>
+        <section className='main-container'>
           <Navbar />
-          Dashboard
+          <div className='content-container'>
+            Dashboard
+          </div>    
         </section>
       </Fragment>
     )
