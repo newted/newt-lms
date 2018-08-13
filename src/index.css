@@ -77,10 +77,10 @@ a {
 .course-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   width: 25%;
   min-width: 200px;
-  height: 100px;
+  min-height: 100px;
   margin: 2%;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -89,14 +89,30 @@ a {
   background-color: #ffb294;
 }
 
-.course-card-shortname {
+.course-card--header {
+  display: flex;
+  justify-content: center;
+}
+
+.course-card--body {
+  display: flex;
+  justify-content: space-around;
+}
+
+.course-card--icon {
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+}
+
+.course-card--shortname {
   font-size: 1.25rem;
   font-weight: 600;
   text-align: center;
   margin: .5rem 0rem;
 }
 
-.course-card-name {
+.course-card--name {
   font-size: 1rem;
   color: #555;
   text-align: center;
