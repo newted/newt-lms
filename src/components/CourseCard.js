@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 
 class CourseCard extends Component {
   render() {
-    const { courseShortName, courseName, courseIcon } = this.props
+    const { courseId, courseShortName, courseName, courseIcon } = this.props
 
     return (
-      <Link to='/course' className='course-card'>
+      <Link to={{
+          pathname: `/course/${courseId}`
+        }} className='course-card'>
           <div className='course-card--header'>
             <div className='course-card--icon'>
               { courseIcon }
@@ -27,11 +29,13 @@ class CourseCard extends Component {
 }
 
 function mapStateToProps({ courses }, { id }) {
+  const courseId = id
   const courseShortName = courses[id].shortname
   const courseName = courses[id].name
   const courseIcon = courses[id].icon
 
   return {
+    courseId,
     courseShortName,
     courseName,
     courseIcon
