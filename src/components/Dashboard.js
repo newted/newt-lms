@@ -1,8 +1,8 @@
 // Frameworks/Libraries
 import React, { Component, Fragment } from 'react'
 // Components
-import Navbar from './Navbar'
-import Sidebar from './Sidebar'
+import Navbar from './items/Navbar'
+import Sidebar from './items/Sidebar'
 
 class Dashboard extends Component {
   render() {
@@ -13,7 +13,7 @@ class Dashboard extends Component {
           <Navbar />
           <div className='content-container'>
             Dashboard
-          </div>    
+          </div>
         </section>
       </Fragment>
     )

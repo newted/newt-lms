@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 // Components
-import Navbar from './Navbar'
-import Sidebar from './Sidebar'
+import Navbar from './items/Navbar'
+import Sidebar from './items/Sidebar'
 
 class CoursePage extends Component {
   render() {
-    const { courseId } = this.props
+    const { courseShortName, courseName } = this.props
 
     return (
       <Fragment>
@@ -14,7 +14,9 @@ class CoursePage extends Component {
         <section className='main-container'>
           <Navbar />
           <div className='content-container'>
-            { courseId }
+            <div className='course-page-container'>
+              <h3 className='header--2'>{ courseShortName } &ndash; { courseName}</h3>
+            </div>
           </div>
         </section>
       </Fragment>
@@ -22,11 +24,15 @@ class CoursePage extends Component {
   }
 }
 
-function mapStateToProps(_, props) {
+function mapStateToProps({ courses }, props) {
   const { courseId } = props.match.params
+  const courseShortName = courses[courseId].shortname
+  const courseName = courses[courseId].name
 
   return {
-    courseId
+    courseId,
+    courseShortName,
+    courseName
   }
 }
 
