@@ -5,8 +5,6 @@ import {
   AccordionItemTitle,
   AccordionItemBody
 } from 'react-accessible-accordion'
-// Temp styling
-// import 'react-accessible-accordion/dist/fancy-example.css';
 
 class AssignmentAccordion extends Component {
   render() {

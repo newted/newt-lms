@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 // Components
 import Navbar from './items/Navbar'
 import Sidebar from './items/Sidebar'
@@ -28,6 +29,11 @@ class Courses extends Component {
       </Fragment>
     )
   }
+}
+
+Courses.PropTypes = {
+  authedUser: PropTypes.oneOfType([PropTypes.string, null]),
+  courses: PropTypes.object.isRequired
 }
 
 function mapStateToProps({ authedUser, courses }) {
