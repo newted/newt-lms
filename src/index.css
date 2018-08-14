@@ -73,6 +73,11 @@ a {
   flex-direction: column;
 }
 
+.items-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .header {
   font-size: 1.75rem;
   margin-left: 2%;
@@ -84,6 +89,8 @@ a {
   margin-left: 2%;
   margin-bottom: 1rem;
 }
+
+/** Course Card CSS **/
 
 .courses-card-container {
   display: flex;
@@ -137,4 +144,51 @@ a {
   color: #555;
   text-align: center;
   margin: .5rem 0rem;
+}
+
+/** Accordian CSS **/
+
+.accordion {
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  width: 30%;
+  min-width: 300px;
+  margin-left: 2%;
+  margin-top: 1rem;
+}
+
+.accordion--item {
+
+}
+
+.accordion--item + .accordion--item {
+  border-top: 1px solid #ccc;
+}
+
+.accordion--title {
+  font-weight: 400;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  border: none;
+  padding: 1rem;
+}
+
+.accordion--title h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.accordion--body {
+  display: flex;
+  padding: 1rem;
+}
+
+.accordion--body p {
+  margin: 0;
+  font-size: .85rem;
+}
+
+.accordion--body-hidden {
+  display: none;
 }
