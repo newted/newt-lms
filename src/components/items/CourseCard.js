@@ -8,7 +8,7 @@ class CourseCard extends Component {
 
     return (
       <Link to={{
-          pathname: `/course/${courseId}`
+          pathname: `/courses/${courseId}`
         }} className='course-card'>
           <div className='course-card--header'>
             <div className='course-card--icon'>
