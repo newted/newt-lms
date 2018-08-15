@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 class CourseCard extends Component {
   render() {
@@ -27,13 +26,6 @@ class CourseCard extends Component {
       </Link>
     )
   }
-}
-
-CourseCard.PropTypes = {
-  courseId: PropTypes.string.isRequired,
-  courseShortName: PropTypes.string.isRequired,
-  courseName: PropTypes.string.isRequired,
-  courseIcon: PropTypes.element
 }
 
 function mapStateToProps({ courses }, { id }) {

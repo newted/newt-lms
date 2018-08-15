@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 // Components
 import Navbar from './items/Navbar'
 import Sidebar from './items/Sidebar'
@@ -28,12 +27,6 @@ class CoursePage extends Component {
       </Fragment>
     )
   }
-}
-
-CoursePage.PropTypes = {
-  courseId: PropTypes.string,
-  courseShortName: PropTypes.string.isRequired,
-  courseName: PropTypes.string.isRequired
 }
 
 function mapStateToProps({ courses }, props) {

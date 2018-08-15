@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
-import PropTypes from 'prop-types'
 // API
 import { handleInitialData } from '../actions/shared'
 // Components
@@ -36,10 +35,6 @@ class App extends Component {
       </Router>
     );
   }
-}
-
-App.PropTypes = {
-  loading: PropTypes.bool.isRequired
 }
 
 function mapStateToProps({ authedUser }) {
