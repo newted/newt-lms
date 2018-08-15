@@ -80,6 +80,7 @@ a {
 
 .item-container--sm {
   display: flex;
+  flex-direction: column;
   width: 30%;
   min-width: 300px;
   margin-left: 2%;
@@ -96,6 +97,13 @@ a {
   font-size: 1.5rem;
   margin-left: 2%;
   margin-bottom: 1rem;
+}
+
+.header--3 {
+  font-size: 1.15rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
 /** Course Card CSS **/
@@ -172,7 +180,6 @@ a {
 }
 
 .accordion--title {
-  font-weight: 400;
   /* background-color: #eee; */
   color: #444;
   cursor: pointer;
@@ -182,7 +189,8 @@ a {
 
 .accordion--title h3 {
   margin: 0;
-  font-size: 1rem;
+  font-weight: 400;
+  font-size: .9rem;
 }
 
 .accordion--body {
@@ -193,9 +201,22 @@ a {
 
 .accordion--body p {
   margin: 0;
-  font-size: .85rem;
+  font-size: .8rem;
 }
 
 .accordion--body-hidden {
   display: none;
+}
+
+/** Panel CSS **/
+
+.panel {
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.panel-body {
+  font-size: .8rem;
 }

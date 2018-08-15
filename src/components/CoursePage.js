@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // Components
 import Navbar from './items/Navbar'
 import Sidebar from './items/Sidebar'
-import AssignmentAccordion from './items/AssignmentAccordion'
+import AssignmentSection from './items/AssignmentSection'
 
 class CoursePage extends Component {
   render() {
@@ -18,7 +18,7 @@ class CoursePage extends Component {
             <div className='course-page-container'>
               <h3 className='header--2'>{ courseShortName } &ndash; { courseName}</h3>
               <div className='items-container'>
-                <AssignmentAccordion courseId={ courseId } />
+                <AssignmentSection courseId={ courseId } />
               </div>
 
             </div>

@@ -9,11 +9,14 @@ import {
 
 const NoAssignments = () => (
   <div className='item-container--sm'>
-    You don't have any assignments
+    <h3 className='header--3'>Assignments</h3>
+    <div className='panel panel-body'>
+      You don't have any assignments
+    </div>
   </div>
 )
 
-class AssignmentAccordion extends Component {
+class AssignmentSection extends Component {
   render() {
     const { assignmentObj } = this.props
 
@@ -23,6 +26,7 @@ class AssignmentAccordion extends Component {
 
     return(
       <div className='item-container--sm'>
+        <h3 className='header--3'>Assignments</h3>
         <Accordion className='accordion' accordion={ false }>
           { Object.keys(assignmentObj).map((assignmentId) => (
             <AccordionItem className='accordion--item' key={ assignmentId }>
@@ -59,4 +63,4 @@ function mapStateToProps({ courses, assignments }, { courseId }) {
   }
 }
 
-export default connect(mapStateToProps)(AssignmentAccordion)
+export default connect(mapStateToProps)(AssignmentSection)
