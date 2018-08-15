@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Navbar from './items/Navbar'
 import Sidebar from './items/Sidebar'
 import AssignmentSection from './items/AssignmentSection'
+import Panel from './items/Panel'
 
 class CoursePage extends Component {
   render() {
@@ -18,9 +19,9 @@ class CoursePage extends Component {
             <div className='course-page-container'>
               <h3 className='header--2'>{ courseShortName } &ndash; { courseName}</h3>
               <div className='items-container'>
+                <Panel title='Announcements' sizeClass='item-container--sm'/>
                 <AssignmentSection courseId={ courseId } />
               </div>
-
             </div>
           </div>
         </section>

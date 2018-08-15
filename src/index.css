@@ -189,6 +189,7 @@ a {
 
 .accordion--title h3 {
   margin: 0;
+  text-decoration: underline;
   font-weight: 400;
   font-size: .9rem;
 }
@@ -213,7 +214,6 @@ a {
 .panel {
   border: 1px solid #ccc;
   border-radius: .25rem;
-  width: 100%;
   padding: 1rem;
 }
 
