@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   Accordion,
   AccordionItem,
@@ -6,33 +7,56 @@ import {
   AccordionItemBody
 } from 'react-accessible-accordion'
 
+const NoAssignments = () => (
+  <div className='item-container--sm'>
+    You don't have any assignments
+  </div>
+)
+
 class AssignmentAccordion extends Component {
   render() {
+    const { assignmentObj } = this.props
+
+    if (Object.keys(assignmentObj).length === 0) {
+      return <NoAssignments/>
+    }
+
     return(
-      <Accordion className='accordion'>
-        <AccordionItem className='accordion--item'>
-          <AccordionItemTitle className='accordion--title'>
-            <h3>Assignment 1</h3>
-          </AccordionItemTitle>
-          <AccordionItemBody
-            className='accordion--body'
-            hideBodyClassName='accordion--body-hidden'>
-              <p>Assignment 1 details</p>
-          </AccordionItemBody>
-        </AccordionItem>
-        <AccordionItem className='accordion--item'>
-          <AccordionItemTitle className='accordion--title'>
-            <h3>Assignment 2</h3>
-          </AccordionItemTitle>
-          <AccordionItemBody
-            className='accordion--body'
-            hideBodyClassName='accordion--body-hidden'>
-            <p>Assignment 2 details</p>
-          </AccordionItemBody>
-        </AccordionItem>
-      </Accordion>
+      <div className='item-container--sm'>
+        <Accordion className='accordion' accordion={ false }>
+          { Object.keys(assignmentObj).map((assignmentId) => (
+            <AccordionItem className='accordion--item' key={ assignmentId }>
+              <AccordionItemTitle className='accordion--title'>
+                <h3>{ assignmentObj[assignmentId].name }</h3>
+              </AccordionItemTitle>
+              <AccordionItemBody
+                className='accordion--body'
+                hideBodyClassName='accordion--body-hidden'>
+                  <p>{ assignmentObj[assignmentId].details }</p>
+              </AccordionItemBody>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
     )
   }
 }
 
-export default AssignmentAccordion
+function mapStateToProps({ courses, assignments }, { courseId }) {
+  const assignmentList = courses[courseId].assignments
+  const assignmentObj = {}
+
+  if (assignmentList.length > 0) {
+    assignmentList.forEach((assgnId) => {
+      assignmentObj[assgnId] = assignments[assgnId]
+    })
+  }
+
+
+  return {
+    courseId,
+    assignmentObj
+  }
+}
+
+export default connect(mapStateToProps)(AssignmentAccordion)

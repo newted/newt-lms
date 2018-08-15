@@ -7,7 +7,7 @@ import AssignmentAccordion from './items/AssignmentAccordion'
 
 class CoursePage extends Component {
   render() {
-    const { courseShortName, courseName } = this.props
+    const { courseId, courseShortName, courseName } = this.props
 
     return (
       <Fragment>
@@ -18,7 +18,7 @@ class CoursePage extends Component {
             <div className='course-page-container'>
               <h3 className='header--2'>{ courseShortName } &ndash; { courseName}</h3>
               <div className='items-container'>
-                <AssignmentAccordion/>
+                <AssignmentAccordion courseId={ courseId } />
               </div>
 
             </div>

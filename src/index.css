@@ -78,6 +78,14 @@ a {
   flex-direction: row;
 }
 
+.item-container--sm {
+  display: flex;
+  width: 30%;
+  min-width: 300px;
+  margin-left: 2%;
+  margin-top: 1rem;
+}
+
 .header {
   font-size: 1.75rem;
   margin-left: 2%;
@@ -150,15 +158,13 @@ a {
 
 .accordion {
   border: 1px solid #ccc;
+  background-color: #eee;
   border-radius: .25rem;
-  width: 30%;
-  min-width: 300px;
-  margin-left: 2%;
-  margin-top: 1rem;
+  width: 100%;
 }
 
 .accordion--item {
-
+  /* border-radius: .25rem; */
 }
 
 .accordion--item + .accordion--item {
@@ -167,7 +173,7 @@ a {
 
 .accordion--title {
   font-weight: 400;
-  background-color: #eee;
+  /* background-color: #eee; */
   color: #444;
   cursor: pointer;
   border: none;
@@ -181,6 +187,7 @@ a {
 
 .accordion--body {
   display: flex;
+  background-color: #fff;
   padding: 1rem;
 }
 
