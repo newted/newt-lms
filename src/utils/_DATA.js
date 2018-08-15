@@ -7,7 +7,8 @@ let courses = {
     shortname: 'BSYS 3000',
     department: 'Business Systems',
     school: 'School of Business',
-    icon: BSYSicon
+    icon: BSYSicon,
+    assignments: ['bsys3000assgn1', 'bsys3000assgn2']
   },
   BSYS3105: {
     id: 'BSYS3105',
@@ -15,7 +16,8 @@ let courses = {
     shortname: 'BSYS 3105',
     department: 'Business Systems',
     school: 'School of Business',
-    icon: BSYSicon
+    icon: BSYSicon,
+    assignments: ['bsys3105assgn1', 'bsys3105assgn2']
   },
   BSYS3205: {
     id: 'BSYS3205',
@@ -67,8 +69,37 @@ let courses = {
   },
 }
 
+let assignments = {
+  "bsys3000assgn1": {
+    id: "bsys3000assgn1",
+    name: "Worksheet 1",
+    details: "What is the cloud?"
+  },
+  "bsys3000assgn2": {
+    id: "bsys3000assgn2",
+    name: "Worksheet 2",
+    details: "Plan your first cloud server"
+  },
+  "bsys3105assgn1": {
+    id: "bsys3105assgn1",
+    name: "Make a website",
+    details: "Design and build your own website"
+  },
+  "bsys3105assgn2": {
+    id: "bsys3105assgn2",
+    name: "Setup a server",
+    details: "Setup an Apache2 server on Amazon Lightsail"
+  }
+}
+
 export function _getCourses() {
   return new Promise((res, rej) => {
     setTimeout(() => res({...courses}), 1000)
+  })
+}
+
+export function _getAssignments() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({...assignments}), 1000)
   })
 }

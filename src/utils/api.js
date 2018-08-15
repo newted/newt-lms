@@ -1,8 +1,11 @@
-import { _getCourses } from './_DATA.js'
+import { _getCourses, _getAssignments } from './_DATA.js'
 
 export function getInitialData() {
-  return _getCourses()
-    .then((courses) => ({
-      courses
+  return Promise.all([
+    _getCourses(),
+    _getAssignments(),
+  ]).then(([courses, assignments]) => ({
+      courses,
+      assignments
     }))
 }
