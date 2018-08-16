@@ -21,6 +21,7 @@ class CoursePage extends Component {
               <div className='items-container'>
                 <Panel title='Announcements' sizeClass='item-container--sm'/>
                 <AssignmentSection courseId={ courseId } />
+                <Panel title='Quizzes' sizeClass='item-container--sm' />
               </div>
             </div>
           </div>

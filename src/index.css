@@ -76,13 +76,14 @@ a {
 .items-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .item-container--sm {
   display: flex;
   flex-direction: column;
   width: 30%;
-  min-width: 300px;
+  min-width: 250px;
   margin-left: 2%;
   margin-top: 1rem;
 }
@@ -219,4 +220,6 @@ a {
 
 .panel-body {
   font-size: .8rem;
+  padding: .5rem 0rem;
+  border-bottom: 1px solid #eee;
 }
