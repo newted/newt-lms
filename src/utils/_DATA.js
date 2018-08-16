@@ -28,7 +28,8 @@ let courses = {
     department: 'Business Systems',
     school: 'School of Business',
     icon: BSYSicon,
-    assignments: []
+    assignments: [],
+    announcements: []
   },
   BSYS3355: {
     id: 'BSYS3355',
@@ -37,7 +38,8 @@ let courses = {
     department: 'Business Systems',
     school: 'School of Business',
     icon: BSYSicon,
-    assignments: []
+    assignments: [],
+    announcements: []
   },
   BUSA4850: {
     id: 'BUSA4850',
@@ -46,7 +48,8 @@ let courses = {
     department: 'Business Administration',
     school: 'School of Business',
     icon: BUSAicon,
-    assignments: []
+    assignments: [],
+    announcements: []
   },
   FMGT2331: {
     id: 'FMGT3221',
@@ -55,7 +58,8 @@ let courses = {
     department: 'Financial Management',
     school: 'School of Business',
     icon: FMGTicon,
-    assignments: []
+    assignments: [],
+    announcements: []
   },
   OMPT2172: {
     id: 'OPMT2172',
@@ -64,7 +68,8 @@ let courses = {
     department: 'Operations Management',
     school: 'School of Business',
     icon: OPMTicon,
-    assignments: []
+    assignments: [],
+    announcements: []
   },
   OMPT3302: {
     id: 'OPMT3302',
@@ -73,7 +78,8 @@ let courses = {
     department: 'Operations Management',
     school: 'School of Business',
     icon: OPMTicon,
-    assignments: []
+    assignments: [],
+    announcements: []
   },
 }
 

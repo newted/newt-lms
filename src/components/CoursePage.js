@@ -19,9 +19,19 @@ class CoursePage extends Component {
             <div className='course-page-container'>
               <h3 className='header--2'>{ courseShortName } &ndash; { courseName}</h3>
               <div className='items-container'>
-                <Panel title='Announcements' sizeClass='item-container--sm'/>
+                <Panel
+                  title='Announcements'
+                  type='announcements'
+                  courseId={ courseId }
+                  sizeClass='item-container--sm'
+                />
                 <AssignmentSection courseId={ courseId } />
-                <Panel title='Quizzes' sizeClass='item-container--sm' />
+                <Panel
+                  title='Quizzes'
+                  type='quizzes'
+                  courseId={ courseId }
+                  sizeClass='item-container--sm'
+                />
               </div>
             </div>
           </div>

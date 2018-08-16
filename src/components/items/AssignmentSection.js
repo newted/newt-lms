@@ -10,8 +10,10 @@ import {
 const NoAssignments = () => (
   <div className='item-container--sm'>
     <h3 className='header--3'>Assignments</h3>
-    <div className='panel panel-body'>
-      You don't have any assignments
+    <div className='panel'>
+      <div className='panel-body'>
+        You don't have any assignments
+      </div>
     </div>
   </div>
 )
