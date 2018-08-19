@@ -43,13 +43,7 @@ function mapStateToProps({ courses, announcements, quizzes }, { title, type, cou
   switch(type) {
     case 'announcements':
       infoList = courses[courseId].announcements
-      infoObj = {}
-
-      if (infoList.length > 0) {
-        infoList.forEach((id) => {
-          infoObj[id] = announcements[id]
-        })
-      }
+      infoObj = createInfoObject(infoList, announcements)
 
       return {
         title,
@@ -59,13 +53,7 @@ function mapStateToProps({ courses, announcements, quizzes }, { title, type, cou
       }
     case 'quizzes':
       infoList = courses[courseId].quizzes
-      infoObj = {}
-
-      if (infoList.length > 0) {
-        infoList.forEach((id) => {
-          infoObj[id] = quizzes[id]
-        })
-      }
+      infoObj = createInfoObject(infoList, quizzes)
 
       return {
         title,
@@ -80,6 +68,18 @@ function mapStateToProps({ courses, announcements, quizzes }, { title, type, cou
         sizeClass,
         infoObj: {}
       }
+  }
+
+  function createInfoObject(infoList, data) {
+    infoObj = {}
+
+    if (infoList.length > 0) {
+      infoList.forEach((id) => {
+        infoObj[id] = data[id]
+      })
+    }
+
+    return infoObj
   }
 }
 
