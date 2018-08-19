@@ -172,22 +172,26 @@ let grades = {
   "bsys3000grade1": {
     id: "bsys3000grade1",
     quizId: "bsys3000quiz1",
-    text: 90
+    text: '',
+    details: 90
   },
   "bsys3000grade2": {
     id: "bsys3000grade2",
     quizId: "bsys3000quiz2",
-    text: 76
+    text: '',
+    details: 76
   },
   "bsys3105grade1": {
     id: "bsys3105grade1",
     quizId: "bsys3105quiz1",
-    text: 78
+    text: '',
+    details: 78
   },
   "bsys3105grade2": {
     id: "bsys3105grade2",
     quizId: "bsys3105quiz2",
-    text: 72.5
+    text: '',
+    details: 72.5
   },
 }
 

@@ -15,7 +15,6 @@ const NoInfo = ({ title }) => (
 class Panel extends Component {
   render() {
     const { title, sizeClass, infoObj } = this.props
-    console.log(infoObj)
 
     if (Object.keys(infoObj).length === 0) {
       return <NoInfo title={ title } />
@@ -27,7 +26,12 @@ class Panel extends Component {
         <div className='panel'>
           { Object.keys(infoObj).map((id) => (
             <div className='panel-body' key={ id }>
-              { infoObj[id].text }
+              <div>
+                { infoObj[id].text }
+              </div>
+              <div>
+                { infoObj[id].details}
+              </div>
             </div>
           ))}
         </div>
@@ -65,6 +69,11 @@ function mapStateToProps(
     case 'grades':
       infoList = courses[courseId].grades
       infoObj = createInfoObject(infoList, grades)
+
+      // Populate text field from quizzes data
+      Object.keys(infoObj).forEach((id) => {
+        infoObj[id].text = quizzes[infoObj[id].quizId].text
+      })
 
       return {
         title,

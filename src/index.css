@@ -219,6 +219,8 @@ a {
 }
 
 .panel-body {
+  display: flex;
+  justify-content: space-between;
   font-size: .9rem;
   padding: .5rem 0rem;
   border-bottom: 1px solid #eee;
