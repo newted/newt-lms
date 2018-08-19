@@ -36,15 +36,34 @@ class Panel extends Component {
   }
 }
 
-function mapStateToProps({ courses, announcements }, { title, type, courseId, sizeClass }) {
+function mapStateToProps({ courses, announcements, quizzes }, { title, type, courseId, sizeClass }) {
+  let infoList = []
+  let infoObj = {}
+
   switch(type) {
     case 'announcements':
-      const infoList = courses[courseId].announcements
-      const infoObj = {}
+      infoList = courses[courseId].announcements
+      infoObj = {}
 
       if (infoList.length > 0) {
         infoList.forEach((id) => {
           infoObj[id] = announcements[id]
+        })
+      }
+
+      return {
+        title,
+        courseId,
+        sizeClass,
+        infoObj
+      }
+    case 'quizzes':
+      infoList = courses[courseId].quizzes
+      infoObj = {}
+
+      if (infoList.length > 0) {
+        infoList.forEach((id) => {
+          infoObj[id] = quizzes[id]
         })
       }
 
