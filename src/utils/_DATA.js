@@ -9,7 +9,8 @@ let courses = {
     school: 'School of Business',
     icon: BSYSicon,
     assignments: ['bsys3000assgn1', 'bsys3000assgn2'],
-    announcements: ['bsys3000annc1', 'bsys3000annc2']
+    announcements: ['bsys3000annc1', 'bsys3000annc2'],
+    quizzes: ['bsys3000quiz1', 'bsys3000quiz2']
   },
   BSYS3105: {
     id: 'BSYS3105',
@@ -19,7 +20,8 @@ let courses = {
     school: 'School of Business',
     icon: BSYSicon,
     assignments: ['bsys3105assgn1', 'bsys3105assgn2'],
-    announcements: ['bsys3105annc1', 'bsys3105annc2']
+    announcements: ['bsys3105annc1', 'bsys3105annc2'],
+    quizzes: ['bsys3105quiz1', 'bsys3105quiz2']
   },
   BSYS3205: {
     id: 'BSYS3205',
@@ -29,7 +31,8 @@ let courses = {
     school: 'School of Business',
     icon: BSYSicon,
     assignments: [],
-    announcements: []
+    announcements: [],
+    quizzes: [],
   },
   BSYS3355: {
     id: 'BSYS3355',
@@ -39,7 +42,8 @@ let courses = {
     school: 'School of Business',
     icon: BSYSicon,
     assignments: [],
-    announcements: []
+    announcements: [],
+    quizzes: [],
   },
   BUSA4850: {
     id: 'BUSA4850',
@@ -49,7 +53,8 @@ let courses = {
     school: 'School of Business',
     icon: BUSAicon,
     assignments: [],
-    announcements: []
+    announcements: [],
+    quizzes: [],
   },
   FMGT2331: {
     id: 'FMGT3221',
@@ -59,7 +64,8 @@ let courses = {
     school: 'School of Business',
     icon: FMGTicon,
     assignments: [],
-    announcements: []
+    announcements: [],
+    quizzes: [],
   },
   OMPT2172: {
     id: 'OPMT2172',
@@ -69,7 +75,8 @@ let courses = {
     school: 'School of Business',
     icon: OPMTicon,
     assignments: [],
-    announcements: []
+    announcements: [],
+    quizzes: [],
   },
   OMPT3302: {
     id: 'OPMT3302',
@@ -79,7 +86,8 @@ let courses = {
     school: 'School of Business',
     icon: OPMTicon,
     assignments: [],
-    announcements: []
+    announcements: [],
+    quizzes: [],
   },
 }
 
@@ -125,6 +133,25 @@ let announcements = {
   }
 }
 
+let quizzes = {
+  "bsys3000quiz1": {
+    id: "bsys3000quiz1",
+    text: "Lecture Quiz 1"
+  },
+  "bsys3000quiz2": {
+    id: "bsys3000quiz2",
+    text: "Lecture Quiz 2"
+  },
+  "bsys3105quiz1": {
+    id: "bsys3105quiz1",
+    text: "Quiz 1"
+  },
+  "bsys3105quiz2": {
+    id: "bsys3105quiz2",
+    text: "Quiz 2"
+  },
+}
+
 export function _getCourses() {
   return new Promise((res, rej) => {
     setTimeout(() => res({...courses}), 1000)
@@ -140,5 +167,11 @@ export function _getAssignments() {
 export function _getAnnouncements() {
   return new Promise((res, rej) => {
     setTimeout(() => res({...announcements}), 1000)
+  })
+}
+
+export function _getQuizzes() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({...quizzes}, 1000))
   })
 }

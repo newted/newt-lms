@@ -1,13 +1,20 @@
-import { _getCourses, _getAssignments, _getAnnouncements } from './_DATA.js'
+import {
+  _getCourses,
+  _getAssignments,
+  _getAnnouncements,
+  _getQuizzes
+} from './_DATA.js'
 
 export function getInitialData() {
   return Promise.all([
     _getCourses(),
     _getAssignments(),
-    _getAnnouncements()
-  ]).then(([courses, assignments, announcements]) => ({
+    _getAnnouncements(),
+    _getQuizzes()
+  ]).then(([courses, assignments, announcements, quizzes]) => ({
       courses,
       assignments,
-      announcements
+      announcements,
+      quizzes
     }))
 }
