@@ -10,7 +10,8 @@ let courses = {
     icon: BSYSicon,
     assignments: ['bsys3000assgn1', 'bsys3000assgn2'],
     announcements: ['bsys3000annc1', 'bsys3000annc2'],
-    quizzes: ['bsys3000quiz1', 'bsys3000quiz2']
+    quizzes: ['bsys3000quiz1', 'bsys3000quiz2', 'bsys3000quiz3'],
+    grades: ['bsys3000grade1', 'bsys3000grade2'],
   },
   BSYS3105: {
     id: 'BSYS3105',
@@ -21,7 +22,8 @@ let courses = {
     icon: BSYSicon,
     assignments: ['bsys3105assgn1', 'bsys3105assgn2'],
     announcements: ['bsys3105annc1', 'bsys3105annc2'],
-    quizzes: ['bsys3105quiz1', 'bsys3105quiz2']
+    quizzes: ['bsys3105quiz1', 'bsys3105quiz2', 'bsys3105quiz3'],
+    grades: ['bsys3105grade1', 'bsys3105grade2']
   },
   BSYS3205: {
     id: 'BSYS3205',
@@ -33,6 +35,7 @@ let courses = {
     assignments: [],
     announcements: [],
     quizzes: [],
+    grades: [],
   },
   BSYS3355: {
     id: 'BSYS3355',
@@ -44,6 +47,7 @@ let courses = {
     assignments: [],
     announcements: [],
     quizzes: [],
+    grades: [],
   },
   BUSA4850: {
     id: 'BUSA4850',
@@ -55,6 +59,7 @@ let courses = {
     assignments: [],
     announcements: [],
     quizzes: [],
+    grades: [],
   },
   FMGT2331: {
     id: 'FMGT3221',
@@ -66,6 +71,7 @@ let courses = {
     assignments: [],
     announcements: [],
     quizzes: [],
+    grades: [],
   },
   OMPT2172: {
     id: 'OPMT2172',
@@ -77,6 +83,7 @@ let courses = {
     assignments: [],
     announcements: [],
     quizzes: [],
+    grades: [],
   },
   OMPT3302: {
     id: 'OPMT3302',
@@ -88,6 +95,7 @@ let courses = {
     assignments: [],
     announcements: [],
     quizzes: [],
+    grades: [],
   },
 }
 
@@ -142,6 +150,10 @@ let quizzes = {
     id: "bsys3000quiz2",
     text: "Lecture Quiz 2"
   },
+  "bsys3000quiz3": {
+    id: "bsys3000quiz3",
+    text: "Lecture Quiz 3"
+  },
   "bsys3105quiz1": {
     id: "bsys3105quiz1",
     text: "Quiz 1"
@@ -149,6 +161,33 @@ let quizzes = {
   "bsys3105quiz2": {
     id: "bsys3105quiz2",
     text: "Quiz 2"
+  },
+  "bsys3105quiz3": {
+    id: "bsys3105quiz3",
+    text: "Quiz 3"
+  },
+}
+
+let grades = {
+  "bsys3000grade1": {
+    id: "bsys3000grade1",
+    quizId: "bsys3000quiz1",
+    text: 90
+  },
+  "bsys3000grade2": {
+    id: "bsys3000grade2",
+    quizId: "bsys3000quiz2",
+    text: 76
+  },
+  "bsys3105grade1": {
+    id: "bsys3105grade1",
+    quizId: "bsys3105quiz1",
+    text: 78
+  },
+  "bsys3105grade2": {
+    id: "bsys3105grade2",
+    quizId: "bsys3105quiz2",
+    text: 72.5
   },
 }
 
@@ -173,5 +212,11 @@ export function _getAnnouncements() {
 export function _getQuizzes() {
   return new Promise((res, rej) => {
     setTimeout(() => res({...quizzes}, 1000))
+  })
+}
+
+export function _getGrades() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({...grades}, 1000))
   })
 }

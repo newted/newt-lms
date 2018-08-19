@@ -2,7 +2,8 @@ import {
   _getCourses,
   _getAssignments,
   _getAnnouncements,
-  _getQuizzes
+  _getQuizzes,
+  _getGrades
 } from './_DATA.js'
 
 export function getInitialData() {
@@ -10,11 +11,13 @@ export function getInitialData() {
     _getCourses(),
     _getAssignments(),
     _getAnnouncements(),
-    _getQuizzes()
-  ]).then(([courses, assignments, announcements, quizzes]) => ({
+    _getQuizzes(),
+    _getGrades()
+  ]).then(([courses, assignments, announcements, quizzes, grades]) => ({
       courses,
       assignments,
       announcements,
-      quizzes
+      quizzes,
+      grades
     }))
 }
