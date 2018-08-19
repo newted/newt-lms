@@ -32,6 +32,12 @@ class CoursePage extends Component {
                   courseId={ courseId }
                   sizeClass='item-container--sm'
                 />
+                <Panel
+                  title='Grades'
+                  type='grades'
+                  courseId={ courseId }
+                  sizeClass='item-container--sm'
+                />
               </div>
             </div>
           </div>

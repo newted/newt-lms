@@ -36,7 +36,8 @@ class Panel extends Component {
   }
 }
 
-function mapStateToProps({ courses, announcements, quizzes }, { title, type, courseId, sizeClass }) {
+function mapStateToProps(
+  { courses, announcements, quizzes, grades }, { title, type, courseId, sizeClass }) {
   let infoList = []
   let infoObj = {}
 
@@ -54,6 +55,16 @@ function mapStateToProps({ courses, announcements, quizzes }, { title, type, cou
     case 'quizzes':
       infoList = courses[courseId].quizzes
       infoObj = createInfoObject(infoList, quizzes)
+
+      return {
+        title,
+        courseId,
+        sizeClass,
+        infoObj
+      }
+    case 'grades':
+      infoList = courses[courseId].grades
+      infoObj = createInfoObject(infoList, grades)
 
       return {
         title,
