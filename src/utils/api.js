@@ -5,6 +5,7 @@ import {
   _getQuizzes,
   _getGrades
 } from './_DATA.js'
+import firebase from '../backend/firebase'
 
 export function getInitialData() {
   return Promise.all([
@@ -21,3 +22,13 @@ export function getInitialData() {
       grades
     }))
 }
+
+const db = firebase.firestore()
+const settings = {timestampsInSnapshots: true}
+db.settings(settings)
+
+db.collection('courses').get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, doc.data())
+  })
+})
