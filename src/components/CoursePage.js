@@ -8,7 +8,11 @@ import Panel from './items/Panel'
 
 class CoursePage extends Component {
   render() {
-    const { courseId, courseShortName, courseName } = this.props
+    const { courseId, isFetching, course } = this.props
+
+    if (isFetching) {
+      return <p>Loading...</p>
+    }
 
     return (
       <Fragment>
@@ -17,9 +21,9 @@ class CoursePage extends Component {
           <Navbar />
           <div className='content-container'>
             <div className='course-page-container'>
-              <h3 className='header--2'>{ courseShortName } &ndash; { courseName}</h3>
-              {/* <div className='items-container'>
-                <Panel
+              <h3 className='header--2'>{ course.shortname } &ndash; { course.name}</h3>
+              <div className='items-container'>
+                {/* <Panel
                   title='Announcements'
                   type='announcements'
                   courseId={ courseId }
@@ -37,8 +41,8 @@ class CoursePage extends Component {
                   type='grades'
                   courseId={ courseId }
                   sizeClass='item-container--sm'
-                />
-              </div> */}
+                /> */}
+              </div>
             </div>
           </div>
         </section>
@@ -49,13 +53,13 @@ class CoursePage extends Component {
 
 function mapStateToProps({ courses }, props) {
   const { courseId } = props.match.params
-  const courseShortName = courses.items[courseId].shortname
-  const courseName = courses.items[courseId].name
+  const { isFetching } = courses
+  const course = courses.items[courseId]
 
   return {
     courseId,
-    courseShortName,
-    courseName
+    isFetching,
+    course
   }
 }
 
