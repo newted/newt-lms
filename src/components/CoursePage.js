@@ -18,7 +18,7 @@ class CoursePage extends Component {
           <div className='content-container'>
             <div className='course-page-container'>
               <h3 className='header--2'>{ courseShortName } &ndash; { courseName}</h3>
-              <div className='items-container'>
+              {/* <div className='items-container'>
                 <Panel
                   title='Announcements'
                   type='announcements'
@@ -38,7 +38,7 @@ class CoursePage extends Component {
                   courseId={ courseId }
                   sizeClass='item-container--sm'
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -49,8 +49,8 @@ class CoursePage extends Component {
 
 function mapStateToProps({ courses }, props) {
   const { courseId } = props.match.params
-  const courseShortName = courses[courseId].shortname
-  const courseName = courses[courseId].name
+  const courseShortName = courses.items[courseId].shortname
+  const courseName = courses.items[courseId].name
 
   return {
     courseId,

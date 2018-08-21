@@ -16,7 +16,7 @@ class App extends Component {
     const { dispatch } = this.props
 
     dispatch(getCourses())
-    dispatch(getAssignments())
+    // dispatch(getAssignments())
     dispatch(setAuthedUser('nehaludyavar'))
 
   }

@@ -30,9 +30,9 @@ class CourseCard extends Component {
 
 function mapStateToProps({ courses }, { id }) {
   const courseId = id
-  const courseShortName = courses[id].shortname
-  const courseName = courses[id].name
-  const courseIcon = courses[id].icon
+  const courseShortName = courses.items[id].shortname
+  const courseName = courses.items[id].name
+  const courseIcon = courses.items[id].icon
 
   return {
     courseId,

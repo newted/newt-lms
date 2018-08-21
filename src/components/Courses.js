@@ -18,7 +18,7 @@ class Courses extends Component {
             <div className='courses-container'>
               <h3 className='header'>Courses</h3>
               <div className='courses-card-container'>
-                { Object.keys(courses).map((course) => (
+                { Object.keys(courses.items).map((course) => (
                   <CourseCard key={ course } id={ course }/>
                 ))}
               </div>
