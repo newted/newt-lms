@@ -50,7 +50,6 @@ class AssignmentSection extends Component {
 
 function mapStateToProps({ courses, assignments }, { courseId }) {
   const assignmentList = courses.items[courseId].assignments
-  console.log(assignmentList)
   const assignmentObj = {}
 
   if (assignmentList.length > 0) {

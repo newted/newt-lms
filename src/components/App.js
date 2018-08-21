@@ -3,10 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 // API
-import { getCourses } from '../actions/courses'
-import { getAssignments } from '../actions/assignments'
-import { getAnnouncements } from '../actions/announcements'
-import { setAuthedUser } from '../actions/authedUser'
+import { handleInitialData } from '../actions/shared.js'
 // Components
 import Dashboard from './Dashboard'
 import Courses from './Courses'
@@ -16,11 +13,7 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props
 
-    dispatch(getCourses())
-    dispatch(getAssignments())
-    dispatch(getAnnouncements())
-    dispatch(setAuthedUser('nehaludyavar'))
-
+    dispatch(handleInitialData())
   }
 
   render() {

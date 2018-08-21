@@ -51,9 +51,13 @@ class CoursePage extends Component {
   }
 }
 
-function mapStateToProps({ courses }, props) {
+function mapStateToProps({ courses, assignments }, props) {
   const { courseId } = props.match.params
-  const { isFetching } = courses
+
+  const fetchingCourses = courses.isFetching
+  const fetchingAssignments = assignments.isFetching
+  const isFetching = fetchingCourses || fetchingAssignments
+
   const course = courses.items[courseId]
 
   return {
