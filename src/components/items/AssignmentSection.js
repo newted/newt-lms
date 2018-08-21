@@ -59,7 +59,6 @@ function mapStateToProps({ courses, assignments }, { courseId }) {
     })
   }
 
-
   return {
     courseId,
     assignmentObj

@@ -28,9 +28,9 @@ class CoursePage extends Component {
                   type='announcements'
                   courseId={ courseId }
                   sizeClass='item-container--sm'
-                />
+                /> */}
                 <AssignmentSection courseId={ courseId } />
-                <Panel
+                {/* <Panel
                   title='Quizzes'
                   type='quizzes'
                   courseId={ courseId }
