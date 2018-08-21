@@ -23,8 +23,8 @@ export function getAssignments() {
       .then((snap) => {
         let assignments = {}
 
-        snap.forEach((doc) => {
-          assignments[doc.id] = doc.data()
+        snap.forEach((docRef) => {
+          assignments[docRef.id] = docRef.data()
         })
 
         dispatch(receiveAssignments(assignments))

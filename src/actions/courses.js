@@ -23,8 +23,8 @@ export function getCourses() {
       .then((snap) => {
         let courses = {}
 
-        snap.forEach((doc) => {
-          courses[doc.id] = doc.data()
+        snap.forEach((docRef) => {
+          courses[docRef.id] = docRef.data()
         })
 
         dispatch(receiveCourses(courses))

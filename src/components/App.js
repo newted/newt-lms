@@ -5,6 +5,7 @@ import LoadingBar from 'react-redux-loading'
 // API
 import { getCourses } from '../actions/courses'
 import { getAssignments } from '../actions/assignments'
+import { getAnnouncements } from '../actions/announcements'
 import { setAuthedUser } from '../actions/authedUser'
 // Components
 import Dashboard from './Dashboard'
@@ -17,6 +18,7 @@ class App extends Component {
 
     dispatch(getCourses())
     dispatch(getAssignments())
+    dispatch(getAnnouncements())
     dispatch(setAuthedUser('nehaludyavar'))
 
   }
