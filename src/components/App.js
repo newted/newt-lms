@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 // API
 import { getCourses } from '../actions/courses'
+import { getAssignments } from '../actions/assignments'
 import { setAuthedUser } from '../actions/authedUser'
 // Components
 import Dashboard from './Dashboard'
@@ -15,6 +16,7 @@ class App extends Component {
     const { dispatch } = this.props
 
     dispatch(getCourses())
+    dispatch(getAssignments())
     dispatch(setAuthedUser('nehaludyavar'))
 
   }
