@@ -9,7 +9,7 @@ const INIT_ID = 'nehaludyavar'
 export function handleInitialData() {
   return (dispatch) => {
     dispatch(showLoading())
-    return Promise.all([
+    Promise.all([
       dispatch(getCourses()),
       dispatch(getAssignments()),
       dispatch(getAnnouncements()),

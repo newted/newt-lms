@@ -41,13 +41,12 @@ class Panel extends Component {
 }
 
 function mapStateToProps(
-  { courses, announcements, quizzes, grades }, { title, type, courseId, sizeClass }) {
-  let infoList = []
+  { courses, announcements, quizzes, grades }, { title, type, courseId, list, sizeClass }) {
+  let infoList = list
   let infoObj = {}
 
   switch(type) {
     case 'announcements':
-      infoList = courses[courseId].announcements
       infoObj = createInfoObject(infoList, announcements)
 
       return {
@@ -94,11 +93,11 @@ function mapStateToProps(
     infoObj = {}
 
     if (infoList.length > 0) {
-      infoList.forEach((id) => {
-        infoObj[id] = data[id]
+      infoList.forEach((docRef) => {
+        infoObj[docRef.id] = data.items[docRef.id]
       })
     }
-
+    console.log(infoObj)
     return infoObj
   }
 }

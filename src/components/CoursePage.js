@@ -8,7 +8,7 @@ import Panel from './items/Panel'
 
 class CoursePage extends Component {
   render() {
-    const { courseId, isFetching, course } = this.props
+    const { courseId, isFetching, course, announcementList } = this.props
 
     if (isFetching) {
       return <p>Loading...</p>
@@ -23,12 +23,13 @@ class CoursePage extends Component {
             <div className='course-page-container'>
               <h3 className='header--2'>{ course.shortname } &ndash; { course.name}</h3>
               <div className='items-container'>
-                {/* <Panel
+                <Panel
                   title='Announcements'
                   type='announcements'
                   courseId={ courseId }
+                  list={ announcementList }
                   sizeClass='item-container--sm'
-                /> */}
+                />
                 <AssignmentSection courseId={ courseId } />
                 {/* <Panel
                   title='Quizzes'
@@ -51,19 +52,26 @@ class CoursePage extends Component {
   }
 }
 
-function mapStateToProps({ courses, assignments }, props) {
+function mapStateToProps({ courses, assignments, announcements }, props) {
   const { courseId } = props.match.params
 
   const fetchingCourses = courses.isFetching
   const fetchingAssignments = assignments.isFetching
-  const isFetching = fetchingCourses || fetchingAssignments
+  const fetchingAnnouncements = announcements.isFetching
+  const isFetching = fetchingCourses || fetchingAssignments || fetchingAnnouncements
 
   const course = courses.items[courseId]
+  let announcementList = []
+
+  if (course) {
+    announcementList = course.announcements
+  }
 
   return {
     courseId,
     isFetching,
-    course
+    course,
+    announcementList
   }
 }
 
