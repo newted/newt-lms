@@ -56,7 +56,6 @@ function mapStateToProps(
         infoObj
       }
     case 'quizzes':
-      infoList = courses[courseId].quizzes
       infoObj = createInfoObject(infoList, quizzes)
 
       return {
