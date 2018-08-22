@@ -9,3 +9,12 @@ export const BSYSicon = <FiCode size={ iconSize } />
 export const BUSAicon = <TiBriefcase size={ iconSize } />
 export const FMGTicon = <TiCalculator size={ iconSize } />
 export const OPMTicon = <MdDeveloperBoard size={ iconSize } />
+
+export const icons = {
+  byDepartment: {
+    "Business Systems": BSYSicon,
+    "Business Administration": BUSAicon,
+    "Financial Management": FMGTicon,
+    "Operations Management": OPMTicon
+  }
+}

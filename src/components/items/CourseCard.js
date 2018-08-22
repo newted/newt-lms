@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+// Other
+import { icons } from '../../utils/icons'
 
 class CourseCard extends Component {
   render() {
     const { courseId, courseShortName, courseName, courseIcon } = this.props
+    console.log(courseIcon)
 
     return (
       <Link to={{
@@ -32,7 +35,7 @@ function mapStateToProps({ courses }, { id }) {
   const courseId = id
   const courseShortName = courses.items[id].shortname
   const courseName = courses.items[id].name
-  const courseIcon = courses.items[id].icon
+  const courseIcon = icons.byDepartment[courses.items[id].department]
 
   return {
     courseId,
