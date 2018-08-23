@@ -2,7 +2,7 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 import { getCourses } from './courses'
 import { getAllAssignments } from './assignments'
 import { getAllAnnouncements } from './announcements'
-import { getQuizzes } from './quizzes'
+import { getAllQuizzes } from './quizzes'
 import { setAuthedUser } from './authedUser'
 
 const INIT_ID = 'nehaludyavar'
@@ -15,7 +15,7 @@ export function handleInitialData() {
       dispatch(getCourses()),
       dispatch(getAllAssignments(STUDENT_ID)),
       dispatch(getAllAnnouncements(STUDENT_ID)),
-      dispatch(getQuizzes()),
+      dispatch(getAllQuizzes(STUDENT_ID)),
       dispatch(setAuthedUser(INIT_ID))
     ])
     .then(() => dispatch(hideLoading()))

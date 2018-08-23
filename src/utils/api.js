@@ -56,6 +56,21 @@ export function addCoursesToEnrolment(db) {
                   })
             })
           })
+
+        // Add quizzes subcollection
+        db.collection('courses').doc(course).collection('quizzes').get()
+          .then((snap) => {
+            snap.forEach((docRef) => {
+              db.collection('students')
+                  .doc('A01036028')
+                .collection('enrolment')
+                  .doc(course)
+                .collection('quizzes')
+                  .doc(docRef.id).set({
+                    ...docRef.data()
+                  })
+            })
+          })
       })
     })
 }

@@ -40,63 +40,12 @@ class Panel extends Component {
   }
 }
 
-function mapStateToProps(
-  { courses, announcements, quizzes, grades }, { title, type, courseId, list, sizeClass }) {
-  let infoList = list
-  let infoObj = {}
-
-  switch(type) {
-    case 'announcements':
-      infoObj = list
-
-      return {
-        title,
-        courseId,
-        sizeClass,
-        infoObj
-      }
-    case 'quizzes':
-      infoObj = createInfoObject(infoList, quizzes)
-
-      return {
-        title,
-        courseId,
-        sizeClass,
-        infoObj
-      }
-    case 'grades':
-      infoList = courses[courseId].grades
-      infoObj = createInfoObject(infoList, grades)
-
-      // Populate text field from quizzes data
-      Object.keys(infoObj).forEach((id) => {
-        infoObj[id].text = quizzes[infoObj[id].quizId].text
-      })
-
-      return {
-        title,
-        courseId,
-        sizeClass,
-        infoObj
-      }
-    default:
-      return {
-        title,
-        courseId,
-        sizeClass,
-        infoObj: {}
-      }
-  }
-
-  function createInfoObject(infoList, data) {
-    infoObj = {}
-
-    if (infoList.length > 0) {
-      infoList.forEach((docRef) => {
-        infoObj[docRef.id] = data.items[docRef.id]
-      })
-    }
-    return infoObj
+function mapStateToProps(_, { title, infoObj, sizeClass }) {
+  
+  return {
+    title,
+    sizeClass,
+    infoObj
   }
 }
 
