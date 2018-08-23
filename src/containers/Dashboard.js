@@ -1,8 +1,8 @@
 // Frameworks/Libraries
 import React, { Component, Fragment } from 'react'
 // Components
-import Navbar from './items/Navbar'
-import Sidebar from './items/Sidebar'
+import Navbar from '../components/Navbar'
+import Sidebar from '../components/Sidebar'
 
 class Dashboard extends Component {
   render() {

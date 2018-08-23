@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 // Other
-import { icons } from '../../utils/icons'
+import { icons } from '../utils/icons'
 
 class CourseCard extends Component {
   render() {

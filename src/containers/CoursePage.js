@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 // Components
-import Navbar from './items/Navbar'
-import Sidebar from './items/Sidebar'
-import AssignmentSection from './items/AssignmentSection'
-import Panel from './items/Panel'
+import Navbar from '../components/Navbar'
+import Sidebar from '../components/Sidebar'
+import AssignmentSection from '../components/AssignmentSection'
+import Panel from '../components/Panel'
 
 class CoursePage extends Component {
   render() {

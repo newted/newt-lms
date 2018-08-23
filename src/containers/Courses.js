@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 // Components
-import Navbar from './items/Navbar'
-import Sidebar from './items/Sidebar'
-import CourseCard from './items/CourseCard'
+import Navbar from '../components/Navbar'
+import Sidebar from '../components/Sidebar'
+import CourseCard from '../components/CourseCard'
 
 class Courses extends Component {
   render() {
