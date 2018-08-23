@@ -6,8 +6,7 @@ import { icons } from '../utils/icons'
 
 class CourseCard extends Component {
   render() {
-    const { courseId, courseShortName, courseName, courseIcon } = this.props
-    console.log(courseIcon)
+    const { courseId, courseShortName, courseName, courseIcon } = this.props    
 
     return (
       <Link to={{

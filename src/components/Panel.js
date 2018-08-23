@@ -96,7 +96,6 @@ function mapStateToProps(
         infoObj[docRef.id] = data.items[docRef.id]
       })
     }
-    console.log(infoObj)
     return infoObj
   }
 }
