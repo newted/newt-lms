@@ -48,15 +48,10 @@ class AssignmentSection extends Component {
   }
 }
 
-function mapStateToProps({ courses, assignments }, { courseId }) {
-  const assignmentList = courses.items[courseId].assignments
-  const assignmentObj = {}
-
-  if (assignmentList.length > 0) {
-    assignmentList.forEach((docRef) => {
-      assignmentObj[docRef.id] = assignments.items[docRef.id]
-    })
-  }
+function mapStateToProps({ assignments }, { courseId }) {
+  const assignmentObj = assignments.items[courseId]
+    ? assignments.items[courseId]
+    : {}
 
   return {
     courseId,

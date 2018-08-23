@@ -41,7 +41,7 @@ export function getAllAnnouncements(studentId) {
             })
         )})
 
-        Promise.all(promises)
+        return Promise.all(promises)
           .then(() => dispatch(receiveAnnouncements(announcements)))
       })
   }

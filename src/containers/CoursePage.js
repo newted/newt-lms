@@ -72,6 +72,8 @@ function mapStateToProps(
   const course = courses.items[courseId]
   let quizList = []
   const announcementObj = announcements.items[courseId]
+    ? announcements.items[courseId]
+    : {}
 
 
   if (course) {

@@ -1,6 +1,6 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { getCourses } from './courses'
-import { getAssignments } from './assignments'
+import { getAllAssignments } from './assignments'
 import { getAllAnnouncements } from './announcements'
 import { getQuizzes } from './quizzes'
 import { setAuthedUser } from './authedUser'
@@ -13,7 +13,7 @@ export function handleInitialData() {
     dispatch(showLoading())
     Promise.all([
       dispatch(getCourses()),
-      dispatch(getAssignments()),
+      dispatch(getAllAssignments(STUDENT_ID)),
       dispatch(getAllAnnouncements(STUDENT_ID)),
       dispatch(getQuizzes()),
       dispatch(setAuthedUser(INIT_ID))
