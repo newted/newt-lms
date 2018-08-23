@@ -8,7 +8,7 @@ import Panel from '../components/Panel'
 
 class CoursePage extends Component {
   render() {
-    const { courseId, isFetching, course, announcementList, quizList } = this.props
+    const { courseId, isFetching, course, announcementObj, quizList } = this.props
 
     if (isFetching) {
       return <p>Loading...</p>
@@ -27,17 +27,17 @@ class CoursePage extends Component {
                   title='Announcements'
                   type='announcements'
                   courseId={ courseId }
-                  list={ announcementList }
+                  list={ announcementObj }
                   sizeClass='item-container--sm'
                 />
                 <AssignmentSection courseId={ courseId } />
-                <Panel
+                {/* <Panel
                   title='Quizzes'
                   type='quizzes'
                   courseId={ courseId }
                   list={ quizList }
                   sizeClass='item-container--sm'
-                />
+                /> */}
                 {/* <Panel
                   title='Grades'
                   type='grades'
@@ -58,6 +58,7 @@ function mapStateToProps(
   props
 ) {
   const { courseId } = props.match.params
+  // console.log(typeof courseId)
 
   const fetchingCourses = courses.isFetching
   const fetchingAssignments = assignments.isFetching
@@ -69,19 +70,25 @@ function mapStateToProps(
     fetchingQuizzes
 
   const course = courses.items[courseId]
-  let announcementList = []
   let quizList = []
+  const announcementObj = announcements.items[courseId]
+
 
   if (course) {
-    announcementList = course.announcements
     quizList = course.quizzes
   }
+
+  // if (!fetchingAnnouncements) {
+  //   let items = announcements.items
+  //   // console.log(Object.keys(items))
+  //   announcementObj = items[courseId]
+  // }
 
   return {
     courseId,
     isFetching,
     course,
-    announcementList,
+    announcementObj,
     quizList
   }
 }

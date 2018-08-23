@@ -16,18 +16,49 @@ function receiveAnnouncements(announcements) {
   }
 }
 
-export function getAnnouncements() {
+export function getAllAnnouncements(studentId) {
   return (dispatch) => {
     dispatch(requestAnnouncements())
-    return db.collection('announcements').get()
+    let announcements = {}
+
+    return db.collection('students').doc(studentId).collection('enrolment').get()
       .then((snap) => {
-        let announcements = {}
-
+        let promises = []
         snap.forEach((docRef) => {
-          announcements[docRef.id] = docRef.data()
-        })
+          // .get() returns a promise, so append all promises to an array and
+          // run them all afterwards so that announcements object is ready to be
+          // dispatched
+          promises.push(db.collection('students')
+              .doc(studentId)
+            .collection('enrolment')
+              .doc(docRef.id)
+            .collection('announcements').get().then((snap) => {
+              if (!snap.empty) {
+                snap.forEach((anncRef) => {
+                  announcements[docRef.id] = {...announcements[docRef.id], [anncRef.id]: anncRef.data()}
+                })
+              }
+            })
+        )})
 
-        dispatch(receiveAnnouncements(announcements))
+        Promise.all(promises)
+          .then(() => dispatch(receiveAnnouncements(announcements)))
       })
   }
 }
+
+// export function getAnnouncements(courseId) {
+//   return (dispatch) => {
+//     dispatch(requestAnnouncements())
+//     return db.collection('courses').doc(courseId).collection('announcements').get()
+//       .then((snap) => {
+//         let announcements = {}
+//
+//         snap.forEach((docRef) => {
+//           announcements[docRef.id] = docRef.data()
+//         })
+//
+//         dispatch(receiveAnnouncements(announcements))
+//       })
+//   }
+// }

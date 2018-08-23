@@ -1,11 +1,12 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { getCourses } from './courses'
 import { getAssignments } from './assignments'
-import { getAnnouncements } from './announcements'
+import { getAllAnnouncements } from './announcements'
 import { getQuizzes } from './quizzes'
 import { setAuthedUser } from './authedUser'
 
 const INIT_ID = 'nehaludyavar'
+const STUDENT_ID = 'A01036028'
 
 export function handleInitialData() {
   return (dispatch) => {
@@ -13,7 +14,7 @@ export function handleInitialData() {
     Promise.all([
       dispatch(getCourses()),
       dispatch(getAssignments()),
-      dispatch(getAnnouncements()),
+      dispatch(getAllAnnouncements(STUDENT_ID)),
       dispatch(getQuizzes()),
       dispatch(setAuthedUser(INIT_ID))
     ])

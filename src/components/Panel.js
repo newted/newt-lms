@@ -27,7 +27,7 @@ class Panel extends Component {
           { Object.keys(infoObj).map((id) => (
             <div className='panel-body' key={ id }>
               <div>
-                { infoObj[id].text }
+                { infoObj[id].name }
               </div>
               <div>
                 { infoObj[id].details}
@@ -47,7 +47,7 @@ function mapStateToProps(
 
   switch(type) {
     case 'announcements':
-      infoObj = createInfoObject(infoList, announcements)
+      infoObj = list
 
       return {
         title,

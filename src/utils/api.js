@@ -16,6 +16,7 @@ export function addCoursesToEnrolment(db) {
           .then((docRef) => {
             const data = docRef.data()
 
+            // Add all fields
             db.collection('students').doc('A01036028').collection('enrolment').doc(course).set({
               ...data
             })
@@ -24,6 +25,21 @@ export function addCoursesToEnrolment(db) {
             // db.collection('students').doc('A01036028').collection('enrolment').doc(course).set({
             //
             // })
+          })
+
+        // Add announcements subcollection
+        db.collection('courses').doc(course).collection('announcements').get()
+          .then((snap) => {
+            snap.forEach((docRef) => {
+              db.collection('students')
+                  .doc('A01036028')
+                .collection('enrolment')
+                  .doc(course)
+                .collection('announcements')
+                  .doc(docRef.id).set({
+                    ...docRef.data()
+                  })
+            })
           })
       })
     })
@@ -46,3 +62,13 @@ export function addCoursesToEnrolment(db) {
 //   })
 //   // console.log(docRef)
 // })
+
+// Delete field from collection
+// db.collection('courses').get()
+//   .then((snap) => {
+//     snap.forEach((docRef) => {
+//       db.collection('courses').doc(docRef.id).update({
+//         announcements: firebase.firestore.FieldValue.delete()
+//       })
+//     })
+//   })
