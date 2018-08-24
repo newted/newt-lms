@@ -7,6 +7,9 @@ import Table from '../components/Table'
 
 class Assignments extends Component {
   render() {
+    const { fields, assignmentList } = this.props
+    // console.log(assignmentList)
+
     return (
       <Fragment>
         <Sidebar />
@@ -16,7 +19,11 @@ class Assignments extends Component {
             <div className='courses-container'>
               <h3 className='header'>Assignments</h3>
               <div className='items-container'>
-                <Table sizeClass='item-container--lg' />
+                <Table
+                  sizeClass='item-container--lg'
+                  fields={ fields }
+                  data={ assignmentList }
+                />
               </div>
             </div>
           </div>
@@ -26,4 +33,44 @@ class Assignments extends Component {
   }
 }
 
-export default Assignments
+function mapStateToProps({ courses, assignments }) {
+  const assignmentsByCourseObj = assignments.items
+  const courseItems = courses.items
+  // Table header fields: object key
+  let fields = {
+    'Course': 'courseShortname',
+    'Assignments': 'name',
+    'Due Date': 'dueDate',
+    'Status': 'status'
+  }
+  // array of assignment objects
+  let assignmentList = []
+
+
+  Object.keys(assignmentsByCourseObj).forEach((courseId) => {
+    const assignmentsObj = assignmentsByCourseObj[courseId]
+    Object.keys(assignmentsObj).forEach((assignmentId) => {
+      const timestamp = assignmentsObj[assignmentId]['dueTimestamp']
+      const date = timestamp.toDate()
+      const dateString = date.toLocaleDateString()
+
+      // Add assignment Id to assignment object
+      assignmentsObj[assignmentId]['assignmentId'] = assignmentId
+
+      // Add course shortname to assignment object
+      assignmentsObj[assignmentId]['courseShortname'] = courseItems[courseId].shortname
+
+      // Add dueDate Date object
+      assignmentsObj[assignmentId]['dueDate'] = dateString
+
+      assignmentList.push(assignmentsObj[assignmentId])
+    })
+  })
+
+  return {
+    fields,
+    assignmentList
+  }
+}
+
+export default connect(mapStateToProps)(Assignments)

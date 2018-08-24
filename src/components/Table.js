@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 class Table extends Component {
   render() {
-    const { sizeClass } = this.props
+    const { sizeClass, fields, data } = this.props
+    // console.log(data)
 
     return (
       <div className={'table-container ' + sizeClass}>
@@ -17,18 +18,26 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>BSYS 3000</td>
-              <td>Lecture Quiz 1</td>
-              <td>Sept. 12</td>
-              <td>Due</td>
+            { data.map((object) => (
+              <tr key={ object['assignmentId']}>
+                { Object.keys(fields).map((header) => {
+                  const key = fields[header]
+
+                  return (
+                    <td key={ object['assignmentId'] + key }>{ object[key] }</td>
+                  )
+                })}
+              </tr>
+            ))}
+            {/* <tr>
+
             </tr>
             <tr>
               <td>BSYS 3000</td>
               <td>Lecture Quiz 2</td>
               <td>Sept. 19</td>
               <td>Due</td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>
@@ -36,9 +45,11 @@ class Table extends Component {
   }
 }
 
-function mapStateToProps(_, { sizeClass }) {
+function mapStateToProps(_, { sizeClass, fields, data }) {
   return {
-    sizeClass
+    sizeClass,
+    fields,
+    data
   }
 }
 
