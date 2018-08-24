@@ -8,6 +8,7 @@ import { handleInitialData } from '../actions/shared.js'
 import Dashboard from './Dashboard'
 import Courses from './Courses'
 import CoursePage from './CoursePage'
+import Assignments from './Assignments'
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
                   <Route path='/' exact component={ Dashboard } />
                   <Route path='/courses' exact component={ Courses } />
                   <Route path='/courses/:courseId' component={ CoursePage } />
+                  <Route path='/assignments' component={ Assignments } />
                 </Switch>
             }
           </div>

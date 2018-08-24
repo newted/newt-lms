@@ -17,6 +17,11 @@ class Sidebar extends Component {
                 Courses
               </NavLink>
             </li>
+            <li className='navlink'>
+              <NavLink to='/assignments' activeClassName='active-nav'>
+                Assignments
+              </NavLink>
+            </li>
           </ul>
         </div>
       </aside>
