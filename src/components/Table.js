@@ -3,18 +3,16 @@ import { connect } from 'react-redux'
 
 class Table extends Component {
   render() {
-    const { sizeClass, fields, data } = this.props
-    // console.log(data)
+    const { sizeClass, fields, data } = this.props    
 
     return (
       <div className={'table-container ' + sizeClass}>
         <table>
           <thead>
             <tr>
-              <th>Course</th>
-              <th>Assignments</th>
-              <th>Due Date</th>
-              <th>Status</th>
+              { Object.keys(fields).map((header) => (
+                <th>{ header }</th>
+              ))}
             </tr>
           </thead>
           <tbody>
@@ -29,15 +27,6 @@ class Table extends Component {
                 })}
               </tr>
             ))}
-            {/* <tr>
-
-            </tr>
-            <tr>
-              <td>BSYS 3000</td>
-              <td>Lecture Quiz 2</td>
-              <td>Sept. 19</td>
-              <td>Due</td>
-            </tr> */}
           </tbody>
         </table>
       </div>

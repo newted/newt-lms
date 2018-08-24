@@ -213,12 +213,8 @@ tbody > tr:hover {
 .accordion {
   border: 1px solid #ccc;
   background-color: #eee;
-  border-radius: .25rem;
+  border-radius: .5rem;
   width: 100%;
-}
-
-.accordion--item {
-  /* border-radius: .25rem; */
 }
 
 .accordion--item + .accordion--item {
@@ -226,7 +222,6 @@ tbody > tr:hover {
 }
 
 .accordion--title {
-  /* background-color: #eee; */
   color: #444;
   cursor: pointer;
   border: none;
@@ -259,7 +254,7 @@ tbody > tr:hover {
 
 .panel {
   border: 1px solid #ccc;
-  border-radius: .25rem;
+  border-radius: .5rem;
   padding: 1rem;
 }
 

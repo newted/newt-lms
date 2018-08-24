@@ -8,7 +8,6 @@ import Table from '../components/Table'
 class Assignments extends Component {
   render() {
     const { fields, assignmentList } = this.props
-    // console.log(assignmentList)
 
     return (
       <Fragment>
@@ -36,7 +35,9 @@ class Assignments extends Component {
 function mapStateToProps({ courses, assignments }) {
   const assignmentsByCourseObj = assignments.items
   const courseItems = courses.items
-  // Table header fields: object key
+  // Table header fields: object key.
+  // The keys are the table headings, the values are the corresponding column's
+  // key for the data object
   let fields = {
     'Course': 'courseShortname',
     'Assignments': 'name',
