@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-const NoInfo = ({ title }) => (
-  <div className='item-container--sm'>
+const NoInfo = ({ title, sizeClass }) => (
+  <div className={ sizeClass }>
     <h3 className='header--3'>{ title }</h3>
     <div className='panel'>
       <div className='panel-body'>
@@ -17,7 +17,7 @@ class Panel extends Component {
     const { title, sizeClass, infoObj } = this.props
 
     if (Object.keys(infoObj).length === 0) {
-      return <NoInfo title={ title } />
+      return <NoInfo title={ title } sizeClass={ sizeClass }/>
     }
 
     return (
@@ -41,7 +41,7 @@ class Panel extends Component {
 }
 
 function mapStateToProps(_, { title, infoObj, sizeClass }) {
-  
+
   return {
     title,
     sizeClass,

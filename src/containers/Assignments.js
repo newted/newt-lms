@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 // Components
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
+import Table from '../components/Table'
 
 class Assignments extends Component {
   render() {
@@ -14,6 +15,9 @@ class Assignments extends Component {
           <div className='content-container'>
             <div className='courses-container'>
               <h3 className='header'>Assignments</h3>
+              <div className='items-container'>
+                <Table sizeClass='item-container--lg' />
+              </div>
             </div>
           </div>
         </section>
