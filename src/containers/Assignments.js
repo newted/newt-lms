@@ -68,6 +68,14 @@ function mapStateToProps({ courses, assignments }) {
     })
   })
 
+  // Order assignment array by closest due date to furtherest due date
+  assignmentList.sort((a, b) => {
+    const aDueDate = new Date(a.dueDate)
+    const bDueDate = new Date(b.dueDate)
+
+    return aDueDate - bDueDate
+  })
+
   return {
     fields,
     assignmentList

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 class Table extends Component {
   render() {
-    const { sizeClass, fields, data } = this.props    
+   const { sizeClass, fields, data } = this.props
 
     return (
       <div className={'table-container ' + sizeClass}>
@@ -11,7 +11,7 @@ class Table extends Component {
           <thead>
             <tr>
               { Object.keys(fields).map((header) => (
-                <th>{ header }</th>
+                <th key={ header }>{ header }</th>
               ))}
             </tr>
           </thead>
