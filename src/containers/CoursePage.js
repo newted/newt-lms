@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 // Components
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
-import AssignmentSection from '../components/AssignmentSection'
+import ItemAccordion from '../components/Accordion'
 import Panel from '../components/Panel'
 
 class CoursePage extends Component {
   render() {
-    const { courseId, isFetching, course, announcementObj, quizObj } = this.props
+    const {
+      isFetching, course, assignmentObj, announcementObj, quizObj
+    } = this.props
 
     if (isFetching) {
       return <p>Loading...</p>
@@ -28,7 +30,11 @@ class CoursePage extends Component {
                   infoObj={ announcementObj }
                   sizeClass='item-container--sm'
                 />
-                <AssignmentSection courseId={ courseId } />
+                <ItemAccordion
+                  title='Assignments'
+                  infoObj={ assignmentObj }
+                  sizeClass='item-container--sm'
+                />
                 <Panel
                   title='Quizzes'
                   infoObj={ quizObj }
@@ -54,7 +60,6 @@ function mapStateToProps(
   props
 ) {
   const { courseId } = props.match.params
-  // console.log(typeof courseId)
 
   const fetchingCourses = courses.isFetching
   const fetchingAssignments = assignments.isFetching
@@ -66,6 +71,9 @@ function mapStateToProps(
     fetchingQuizzes
 
   const course = courses.items[courseId]
+  const assignmentObj = assignments.items[courseId]
+    ? assignments.items[courseId]
+    : {}
   const announcementObj = announcements.items[courseId]
     ? announcements.items[courseId]
     : {}
@@ -77,6 +85,7 @@ function mapStateToProps(
     courseId,
     isFetching,
     course,
+    assignmentObj,
     announcementObj,
     quizObj
   }
