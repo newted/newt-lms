@@ -5,11 +5,13 @@ import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import ItemAccordion from '../components/Accordion'
 import Panel from '../components/Panel'
+// Other
+import { objectToArray } from '../utils/helpers'
 
 class CoursePage extends Component {
   render() {
     const {
-      isFetching, course, assignmentObj, announcementObj, quizObj
+      isFetching, course, assignmentArray, announcementObj, quizObj
     } = this.props
 
     if (isFetching) {
@@ -32,7 +34,7 @@ class CoursePage extends Component {
                 />
                 <ItemAccordion
                   title='Assignments'
-                  infoObj={ assignmentObj }
+                  data={ assignmentArray }
                   sizeClass='item-container--sm'
                 />
                 <Panel
@@ -81,11 +83,14 @@ function mapStateToProps(
     ? quizzes.items[courseId]
     : {}
 
+  // Convert object of objects into sorted array of objects
+  const assignmentArray = objectToArray(assignmentObj, 'dueDate')
+
   return {
     courseId,
     isFetching,
     course,
-    assignmentObj,
+    assignmentArray,
     announcementObj,
     quizObj
   }

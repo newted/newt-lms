@@ -20,9 +20,9 @@ const NoInfo = ({ title, sizeClass }) => (
 
 class ItemAccordion extends Component {
   render() {
-    const { title, sizeClass, infoObj } = this.props
+    const { title, sizeClass, data } = this.props
 
-    if (Object.keys(infoObj).length === 0) {
+    if (data.length === 0) {
       return <NoInfo title={ title } sizeClass={ sizeClass } />
     }
 
@@ -30,15 +30,15 @@ class ItemAccordion extends Component {
       <div className={ sizeClass }>
         <h3 className='header--3'>{ title }</h3>
         <Accordion className='accordion' accordion={ false }>
-          { Object.keys(infoObj).map((infoId) => (
-            <AccordionItem className='accordion--item' key={ infoId }>
+          { data.map((infoObj) => (
+            <AccordionItem className='accordion--item' key={ infoObj.id }>
               <AccordionItemTitle className='accordion--title'>
-                <h3>{ infoObj[infoId].name }</h3>
+                <h3>{ infoObj.name }</h3>
               </AccordionItemTitle>
               <AccordionItemBody
                 className='accordion--body'
                 hideBodyClassName='accordion--body-hidden'>
-                  <p>{ infoObj[infoId].details }</p>
+                  <p>{ infoObj.details }</p>
                 </AccordionItemBody>
             </AccordionItem>
           ))}
@@ -48,11 +48,11 @@ class ItemAccordion extends Component {
   }
 }
 
-function mapStateToProps(_, { title, infoObj, sizeClass }) {
+function mapStateToProps(_, { title, data, sizeClass }) {
   return {
     title,
     sizeClass,
-    infoObj
+    data
   }
 }
 
