@@ -11,7 +11,7 @@ import { objectToArray } from '../utils/helpers'
 class CoursePage extends Component {
   render() {
     const {
-      isFetching, course, assignmentArray, announcementObj, quizObj
+      isFetching, course, assignmentArray, announcementArray, quizObj
     } = this.props
 
     if (isFetching) {
@@ -29,7 +29,7 @@ class CoursePage extends Component {
               <div className='items-container'>
                 <Panel
                   title='Announcements'
-                  infoObj={ announcementObj }
+                  data={ announcementArray }
                   sizeClass='item-container--sm'
                 />
                 <ItemAccordion
@@ -37,11 +37,11 @@ class CoursePage extends Component {
                   data={ assignmentArray }
                   sizeClass='item-container--sm'
                 />
-                <Panel
+                {/* <Panel
                   title='Quizzes'
                   infoObj={ quizObj }
                   sizeClass='item-container--sm'
-                />
+                /> */}
                 {/* <Panel
                   title='Grades'
                   type='grades'
@@ -85,13 +85,14 @@ function mapStateToProps(
 
   // Convert object of objects into sorted array of objects
   const assignmentArray = objectToArray(assignmentObj, 'dueDate')
+  const announcementArray = objectToArray(announcementObj, 'creationDate')
 
   return {
     courseId,
     isFetching,
     course,
     assignmentArray,
-    announcementObj,
+    announcementArray,
     quizObj
   }
 }

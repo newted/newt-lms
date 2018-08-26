@@ -5,15 +5,19 @@ export function objectToArray(object, sortByField) {
 
   Object.keys(object).forEach((itemId) => {
     let itemObj = object[itemId]
-    const timestamp = itemObj['dueTimestamp']
+    const timestamp = sortByField === 'dueDate'
+      ? itemObj['dueTimestamp']
+      : itemObj['creationTimestamp']
     const date = timestamp.toDate()
     const dateString = date.toLocaleString()
 
     // Add itemId to object
     itemObj['id'] = itemId
 
-    // Add dueDate Date object
-    itemObj['dueDate'] = dateString
+    // Add dueDate or creationDate Date object
+    sortByField === 'dueDate'
+      ? itemObj['dueDate'] = dateString
+      : itemObj['creationDate'] = dateString
 
     infoArray.push(itemObj)
   })
@@ -24,6 +28,13 @@ export function objectToArray(object, sortByField) {
       const bDueDate = new Date(b.dueDate)
 
       return aDueDate - bDueDate
+    })
+  } else {
+    infoArray.sort((a, b) => {
+      const aDueDate = new Date(a.creationDate)
+      const bDueDate = new Date(b.creationDate)
+
+      return bDueDate - aDueDate
     })
   }
 

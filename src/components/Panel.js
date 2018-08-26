@@ -14,9 +14,9 @@ const NoInfo = ({ title, sizeClass }) => (
 
 class Panel extends Component {
   render() {
-    const { title, sizeClass, infoObj } = this.props
+    const { title, sizeClass, data } = this.props
 
-    if (Object.keys(infoObj).length === 0) {
+    if (data.length === 0) {
       return <NoInfo title={ title } sizeClass={ sizeClass }/>
     }
 
@@ -24,13 +24,13 @@ class Panel extends Component {
       <div className={ sizeClass }>
         <h3 className='header--3'>{ title }</h3>
         <div className='panel'>
-          { Object.keys(infoObj).map((id) => (
-            <div className='panel-body' key={ id }>
+          { data.map((infoObj) => (
+            <div className='panel-body' key={ infoObj.id }>
               <div>
-                { infoObj[id].name }
+                { infoObj.name }
               </div>
               <div>
-                { infoObj[id].details}
+                { infoObj.details }
               </div>
             </div>
           ))}
@@ -40,12 +40,12 @@ class Panel extends Component {
   }
 }
 
-function mapStateToProps(_, { title, infoObj, sizeClass }) {
+function mapStateToProps(_, { title, data, sizeClass }) {
 
   return {
     title,
     sizeClass,
-    infoObj
+    data
   }
 }
 
