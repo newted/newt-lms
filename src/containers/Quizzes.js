@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 // Components
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
@@ -6,6 +7,8 @@ import Table from '../components/Table'
 
 class Quizzes extends Component {
   render() {
+    const { fields, quizList } = this.props
+
     return (
       <Fragment>
         <Sidebar />
@@ -17,8 +20,8 @@ class Quizzes extends Component {
               <div className='items-container'>
                 <Table
                   sizeClass='item-container--lg'
-                  fields={ {} }
-                  data={ [] }
+                  fields={ fields }
+                  data={ quizList }
                 />
               </div>
             </div>
@@ -29,4 +32,45 @@ class Quizzes extends Component {
   }
 }
 
-export default Quizzes
+function mapStateToProps({ courses, quizzes}) {
+  const quizzesByCourseObj = quizzes.items
+  const courseItems = courses.items
+
+  let fields = {
+    'Course': 'courseShortname',
+    'Quiz': 'name',
+    'Due Date': 'dueDate',
+    'Status': 'status'
+  }
+
+  let quizList = []
+
+  Object.keys(quizzesByCourseObj).forEach((courseId) => {
+    const quizObj = quizzesByCourseObj[courseId]
+    Object.keys(quizObj).forEach((quizId) => {
+      const timestamp = quizObj[quizId]['dueTimestamp']
+      const date = timestamp.toDate()
+      const dateString = date.toLocaleDateString()
+
+      quizObj[quizId]['quizId'] = quizId
+      quizObj[quizId]['courseShortname'] = courseItems[courseId].shortname
+      quizObj[quizId]['dueDate'] = dateString
+
+      quizList.push(quizObj[quizId])
+    })
+  })
+
+  quizList.sort((a, b) => {
+    const aDueDate = new Date(a.dueDate)
+    const bDueDate = new Date(b.dueDate)
+
+    return aDueDate - bDueDate
+  })
+
+  return {
+    fields,
+    quizList
+  }
+}
+
+export default connect(mapStateToProps)(Quizzes)

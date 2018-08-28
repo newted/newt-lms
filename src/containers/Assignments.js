@@ -40,7 +40,7 @@ function mapStateToProps({ courses, assignments }) {
   // key for the data object
   let fields = {
     'Course': 'courseShortname',
-    'Assignments': 'name',
+    'Assignment': 'name',
     'Due Date': 'dueDate',
     'Status': 'status'
   }
