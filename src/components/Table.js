@@ -37,17 +37,17 @@ class Table extends Component {
           </thead>
           <tbody>
             { data.map((object) => (
-              <tr key={ object['assignmentId']}>
+              <tr key={ object['id']}>
                 { Object.keys(fields).map((header) => {
                   const key = fields[header]
 
                   if (key === 'status') {
                     return <StatusIcon
-                      key={ object['assignmentId'] + key }
+                      key={ object['id'] + key }
                       data={ object } />
                   } else {
                     return (
-                      <td key={ object['assignmentId'] + key }>
+                      <td key={ object['id'] + key }>
                         { object[key] }
                       </td>
                     )

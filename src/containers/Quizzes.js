@@ -52,7 +52,7 @@ function mapStateToProps({ courses, quizzes}) {
       const date = timestamp.toDate()
       const dateString = date.toLocaleDateString()
 
-      quizObj[quizId]['quizId'] = quizId
+      quizObj[quizId]['id'] = quizId
       quizObj[quizId]['courseShortname'] = courseItems[courseId].shortname
       quizObj[quizId]['dueDate'] = dateString
 

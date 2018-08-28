@@ -56,7 +56,7 @@ function mapStateToProps({ courses, assignments }) {
       const dateString = date.toLocaleDateString()
 
       // Add assignment Id to assignment object
-      assignmentsObj[assignmentId]['assignmentId'] = assignmentId
+      assignmentsObj[assignmentId]['id'] = assignmentId
 
       // Add course shortname to assignment object
       assignmentsObj[assignmentId]['courseShortname'] = courseItems[courseId].shortname
