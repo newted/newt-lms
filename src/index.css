@@ -84,6 +84,14 @@ tbody > tr:hover {
   padding: .5rem 0rem;
 }
 
+.navlink--row {
+  display: flex;
+}
+
+.navlink--icon {
+  padding: 0rem .5rem;
+}
+
 .active-nav {
   font-weight: bold;
 }
