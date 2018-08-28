@@ -22,6 +22,11 @@ class Sidebar extends Component {
                 Assignments
               </NavLink>
             </li>
+            <li className='navlink'>
+              <NavLink to='/quizzes' activeClassName='active-nav'>
+                Quizzes
+              </NavLink>
+            </li>
           </ul>
         </div>
       </aside>
