@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Table from '../components/Table'
+// Helpers
+import { statusDueDateSort } from '../utils/helpers'
 
 class Quizzes extends Component {
   render() {
@@ -60,26 +62,7 @@ function mapStateToProps({ courses, quizzes}) {
     })
   })
 
-  quizList.sort((a, b) => {
-    const aDueDate = new Date(a.dueDate)
-    const bDueDate = new Date(b.dueDate)
-    const aStatus = a.status
-    const bStatus = b.status
-
-    // sort by status
-    if (aStatus === bStatus) {
-      // second-order sort (if status is same): sort by due date
-      return aDueDate - bDueDate
-    } else {
-      if (aStatus === "Incomplete") {
-        return -1
-      } else if (aStatus === "Complete") {
-        return 1
-      } else {
-        return 0
-      }
-    }
-  })
+  quizList.sort((a, b) => statusDueDateSort(a, b))
 
   return {
     fields,

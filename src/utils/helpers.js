@@ -40,3 +40,30 @@ export function objectToArray(object, sortByField) {
 
   return infoArray
 }
+
+// Sort array of objects by status and then by due date (used in Assignments &
+// Quizzes)
+export function statusDueDateSort(a, b) {
+  const aDueDate = new Date(a.dueDate)
+  const bDueDate = new Date(b.dueDate)
+  const aStatus = a.status
+  const bStatus = b.status
+
+  // sort by status (Incomplete and In Progress are grouped together)
+  if (aStatus === bStatus ||
+    aStatus === "Incomplete" && bStatus === "In Progress" ||
+    aStatus === "In Progress" && bStatus === "Incomplete"
+  ) {
+    // second-order sort -- sort by due date -- if status is either Incomplete
+    // or In Progress or if status is Complete
+    return aDueDate - bDueDate
+  } else {
+    if (aStatus === "Incomplete" || aStatus === "In Progress") {
+      return -1
+    } else if (aStatus === "Complete") {
+      return 1
+    } else {
+      return 0
+    }
+  }
+}
