@@ -63,7 +63,7 @@ export function formatDataForTable(dataByCourse, courseItems, sortByField, dateT
       // Add due date or creation date to item object
       sortByField === 'dueDate'
         ? itemObj[itemId]['dueDate'] = dateString
-        : itemObj[itemId]['creationTimestamp'] = dateString
+        : itemObj[itemId]['creationDate'] = dateString
 
       dataArray.push(itemObj[itemId])
     })

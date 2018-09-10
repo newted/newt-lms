@@ -11,7 +11,8 @@ import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 class Dashboard extends Component {
   render() {
     const {
-      assignmentFields, assignmentList, quizFields, quizList
+      announcementFields, announcementList, assignmentFields,
+      assignmentList, quizFields, quizList
     } = this.props
 
     return (
@@ -23,6 +24,12 @@ class Dashboard extends Component {
             <div className='course-page-container'>
               <h3 className='header'>Dashboard</h3>
               <div className='items-container'>
+                <Table
+                  sizeClass='item-container--sm'
+                  fields={ announcementFields }
+                  data={ announcementList }
+                  title='Announcements'
+                />
                 <Table
                   sizeClass='item-container--sm'
                   fields={ assignmentFields }
@@ -44,11 +51,16 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ courses, assignments, quizzes }) {
+function mapStateToProps({ courses, announcements, assignments, quizzes }) {
+  const announcementsByCourseObj = announcements.items
   const assignmentsByCourseObj = assignments.items
   const quizzesByCourseObj = quizzes.items
   const courseItems = courses.items
 
+  const announcementFields = {
+    'Course': 'courseShortname',
+    'Announcement': 'name'
+  }
   const assignmentFields = {
     'Course': 'courseShortname',
     'Assignment': 'name',
@@ -62,6 +74,9 @@ function mapStateToProps({ courses, assignments, quizzes }) {
     'Status': 'status'
   }
 
+  let announcementList = formatDataForTable(
+    announcementsByCourseObj, courseItems, 'creationDate', 'short'
+  )
   let assignmentList = formatDataForTable(
     assignmentsByCourseObj, courseItems, 'dueDate', 'short'
   )
@@ -73,8 +88,10 @@ function mapStateToProps({ courses, assignments, quizzes }) {
   quizList.sort((a, b) => statusDueDateSort(a, b))
 
   return {
+    announcementFields,
     assignmentFields,
     quizFields,
+    announcementList,
     assignmentList,
     quizList
   }
