@@ -5,12 +5,11 @@ import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Table from '../components/Table'
 // Helpers
-import { statusDueDateSort } from '../utils/helpers'
+import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 
 class Assignments extends Component {
   render() {
     const { fields, assignmentList } = this.props
-    console.log(assignmentList)
 
     return (
       <Fragment>
@@ -48,28 +47,8 @@ function mapStateToProps({ courses, assignments }) {
     'Status': 'status'
   }
   // array of assignment objects
-  let assignmentList = []
-
-
-  Object.keys(assignmentsByCourseObj).forEach((courseId) => {
-    const assignmentsObj = assignmentsByCourseObj[courseId]
-    Object.keys(assignmentsObj).forEach((assignmentId) => {
-      const timestamp = assignmentsObj[assignmentId]['dueTimestamp']
-      const date = timestamp.toDate()
-      const dateString = date.toLocaleDateString()
-
-      // Add assignment Id to assignment object
-      assignmentsObj[assignmentId]['id'] = assignmentId
-
-      // Add course shortname to assignment object
-      assignmentsObj[assignmentId]['courseShortname'] = courseItems[courseId].shortname
-
-      // Add dueDate Date object
-      assignmentsObj[assignmentId]['dueDate'] = dateString
-
-      assignmentList.push(assignmentsObj[assignmentId])
-    })
-  })
+  let assignmentList = formatDataForTable(
+    assignmentsByCourseObj, courseItems, 'dueDate')
 
   // Order assignment array by closest due date to furtherest due date
   assignmentList.sort((a, b) => statusDueDateSort(a, b))

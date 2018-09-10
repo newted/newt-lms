@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import Table from '../components/Table'
 // Helpers
-import { statusDueDateSort } from '../utils/helpers'
+import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 
 class Quizzes extends Component {
   render() {
@@ -45,22 +45,7 @@ function mapStateToProps({ courses, quizzes}) {
     'Status': 'status'
   }
 
-  let quizList = []
-
-  Object.keys(quizzesByCourseObj).forEach((courseId) => {
-    const quizObj = quizzesByCourseObj[courseId]
-    Object.keys(quizObj).forEach((quizId) => {
-      const timestamp = quizObj[quizId]['dueTimestamp']
-      const date = timestamp.toDate()
-      const dateString = date.toLocaleDateString()
-
-      quizObj[quizId]['id'] = quizId
-      quizObj[quizId]['courseShortname'] = courseItems[courseId].shortname
-      quizObj[quizId]['dueDate'] = dateString
-
-      quizList.push(quizObj[quizId])
-    })
-  })
+  let quizList = formatDataForTable(quizzesByCourseObj, courseItems, 'dueDate')
 
   quizList.sort((a, b) => statusDueDateSort(a, b))
 

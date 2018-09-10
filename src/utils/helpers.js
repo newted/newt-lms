@@ -41,6 +41,37 @@ export function objectToArray(object, sortByField) {
   return infoArray
 }
 
+
+export function formatDataForTable(dataByCourse, courseItems, sortByField) {
+  let dataArray = []
+
+  Object.keys(dataByCourse).forEach((courseId) => {
+    const itemObj = dataByCourse[courseId]
+    Object.keys(itemObj).forEach((itemId) => {
+      const timestamp = sortByField === 'dueDate'
+        ? itemObj[itemId]['dueTimestamp']
+        : itemObj[itemId]['creationTimestamp']
+      const date = timestamp.toDate()
+      const dateString = date.toLocaleString()
+
+      // Add item ID to item object
+      itemObj[itemId]['id'] = itemId
+
+      // Add course shortname to item object
+      itemObj[itemId]['courseShortname'] = courseItems[courseId].shortname
+
+      // Add due date or creation date to item object
+      sortByField === 'dueDate'
+        ? itemObj[itemId]['dueDate'] = dateString
+        : itemObj[itemId]['creationTimestamp'] = dateString
+
+      dataArray.push(itemObj[itemId])
+    })
+  })
+
+  return dataArray
+}
+
 // Sort array of objects by status and then by due date (used in Assignments &
 // Quizzes)
 export function statusDueDateSort(a, b) {
@@ -49,15 +80,15 @@ export function statusDueDateSort(a, b) {
   const aStatus = a.status
   const bStatus = b.status
 
-  // sort by status (Incomplete and In Progress are grouped together)
-  if (aStatus === bStatus ||
-    aStatus === "Incomplete" && bStatus === "In Progress" ||
-    aStatus === "In Progress" && bStatus === "Incomplete"
+  // second-order sort -- sort by due date -- if status is either Incomplete
+  // or In Progress or if status is Complete
+  if ((aStatus === bStatus) ||
+    (aStatus === "Incomplete" && bStatus === "In Progress") ||
+    (aStatus === "In Progress" && bStatus === "Incomplete")
   ) {
-    // second-order sort -- sort by due date -- if status is either Incomplete
-    // or In Progress or if status is Complete
     return aDueDate - bDueDate
   } else {
+    // sort by status (Incomplete and In Progress are grouped together)
     if (aStatus === "Incomplete" || aStatus === "In Progress") {
       return -1
     } else if (aStatus === "Complete") {
