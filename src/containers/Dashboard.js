@@ -25,6 +25,7 @@ class Dashboard extends Component {
                   sizeClass='item-container--sm'
                   fields={ assignmentFields }
                   data={ assignmentList }
+                  title='Assignments'
                 />
               </div>
             </div>

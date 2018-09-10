@@ -23,50 +23,63 @@ const StatusIcon = ({ data }) => {
 
 class Table extends Component {
   render() {
-   const { sizeClass, fields, data } = this.props
+    const { sizeClass, fields, data, title } = this.props
+
+    let tableStyle = {}
+    if (sizeClass === 'item-container--sm') {
+      tableStyle = {
+        fontSize: '.9rem'
+      }
+    }
 
     return (
-      <div className={'table-container ' + sizeClass}>
-        <table>
-          <thead>
-            <tr>
-              { Object.keys(fields).map((header) => (
-                <th key={ header }>{ header }</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            { data.map((object) => (
-              <tr key={ object['id']}>
-                { Object.keys(fields).map((header) => {
-                  const key = fields[header]
-
-                  if (key === 'status') {
-                    return <StatusIcon
-                      key={ object['id'] + key }
-                      data={ object } />
-                  } else {
-                    return (
-                      <td key={ object['id'] + key }>
-                        { object[key] }
-                      </td>
-                    )
-                  }
-                })}
+      <div className={ sizeClass }>
+        { title && (
+          <h3 className='header--3'>{ title }</h3>
+        )}
+        <div className='table-container'>
+          <table style={ tableStyle }>
+            <thead>
+              <tr>
+                { Object.keys(fields).map((header) => (
+                  <th key={ header }>{ header }</th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              { data.map((object) => (
+                <tr key={ object['id']}>
+                  { Object.keys(fields).map((header) => {
+                    const key = fields[header]
+
+                    if (key === 'status') {
+                      return <StatusIcon
+                        key={ object['id'] + key }
+                        data={ object } />
+                    } else {
+                      return (
+                        <td key={ object['id'] + key }>
+                          { object[key] }
+                        </td>
+                      )
+                    }
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
 }
 
-function mapStateToProps(_, { sizeClass, fields, data }) {
+function mapStateToProps(_, { sizeClass, fields, data, title }) {
   return {
     sizeClass,
     fields,
-    data
+    data,
+    title
   }
 }
 
