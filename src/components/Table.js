@@ -33,7 +33,7 @@ class Table extends Component {
     }
 
     return (
-      <div className={ sizeClass }>
+      <div className={ sizeClass } style={{ minWidth: '325px' }}>
         { title && (
           <h3 className='header--3'>{ title }</h3>
         )}
