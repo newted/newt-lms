@@ -10,7 +10,9 @@ import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 
 class Dashboard extends Component {
   render() {
-    const { assignmentFields, assignmentList } = this.props
+    const {
+      assignmentFields, assignmentList, quizFields, quizList
+    } = this.props
 
     return (
       <Fragment>
@@ -27,6 +29,12 @@ class Dashboard extends Component {
                   data={ assignmentList }
                   title='Assignments'
                 />
+                <Table
+                  sizeClass='item-container--sm'
+                  fields={ quizFields }
+                  data={ quizList }
+                  title='Quizzes'
+                />
               </div>
             </div>
           </div>
@@ -36,8 +44,9 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ courses, assignments }) {
+function mapStateToProps({ courses, assignments, quizzes }) {
   const assignmentsByCourseObj = assignments.items
+  const quizzesByCourseObj = quizzes.items
   const courseItems = courses.items
 
   const assignmentFields = {
@@ -46,15 +55,28 @@ function mapStateToProps({ courses, assignments }) {
     'Due Date': 'dueDate',
     'Status': 'status'
   }
+  const quizFields = {
+    'Course': 'courseShortname',
+    'Quiz': 'name',
+    'Due Date': 'dueDate',
+    'Status': 'status'
+  }
 
   let assignmentList = formatDataForTable(
-    assignmentsByCourseObj, courseItems, 'dueDate', 'short')
+    assignmentsByCourseObj, courseItems, 'dueDate', 'short'
+  )
+  let quizList = formatDataForTable(
+    quizzesByCourseObj, courseItems, 'dueDate', 'short'
+  )
 
   assignmentList.sort((a, b) => statusDueDateSort(a, b))
+  quizList.sort((a, b) => statusDueDateSort(a, b))
 
   return {
     assignmentFields,
-    assignmentList
+    quizFields,
+    assignmentList,
+    quizList
   }
 }
 
