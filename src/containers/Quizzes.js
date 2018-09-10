@@ -45,7 +45,8 @@ function mapStateToProps({ courses, quizzes}) {
     'Status': 'status'
   }
 
-  let quizList = formatDataForTable(quizzesByCourseObj, courseItems, 'dueDate')
+  let quizList = formatDataForTable(
+    quizzesByCourseObj, courseItems, 'dueDate', 'large')
 
   quizList.sort((a, b) => statusDueDateSort(a, b))
 

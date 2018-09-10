@@ -48,7 +48,7 @@ function mapStateToProps({ courses, assignments }) {
   }
   // array of assignment objects
   let assignmentList = formatDataForTable(
-    assignmentsByCourseObj, courseItems, 'dueDate')
+    assignmentsByCourseObj, courseItems, 'dueDate', 'large')
 
   // Order assignment array by closest due date to furtherest due date
   assignmentList.sort((a, b) => statusDueDateSort(a, b))

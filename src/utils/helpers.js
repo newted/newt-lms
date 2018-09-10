@@ -42,7 +42,7 @@ export function objectToArray(object, sortByField) {
 }
 
 
-export function formatDataForTable(dataByCourse, courseItems, sortByField) {
+export function formatDataForTable(dataByCourse, courseItems, sortByField, dateType = 'short') {
   let dataArray = []
 
   Object.keys(dataByCourse).forEach((courseId) => {
@@ -52,7 +52,7 @@ export function formatDataForTable(dataByCourse, courseItems, sortByField) {
         ? itemObj[itemId]['dueTimestamp']
         : itemObj[itemId]['creationTimestamp']
       const date = timestamp.toDate()
-      const dateString = date.toLocaleString()
+      const dateString = formatDueDate(date, dateType)
 
       // Add item ID to item object
       itemObj[itemId]['id'] = itemId
@@ -97,4 +97,13 @@ export function statusDueDateSort(a, b) {
       return 0
     }
   }
+}
+
+// Format date for table due dates: type can be 'short' or 'large'
+export function formatDueDate(date, type) {
+  const dateString = date.toString()
+
+  return type === 'short'
+    ? dateString.substr(4, 6)
+    : dateString.substr(0, 3) + ', ' + dateString.substr(4, 6)
 }
