@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 // Components
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
-import Panel from '../components/Panel'
+import Table from '../components/Table'
+// Helpers
+import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 
 class Dashboard extends Component {
   render() {
-    const { assignmentsObj } = this.props
-    console.log(assignmentsObj)
+    const { assignmentFields, assignmentList } = this.props
 
     return (
       <Fragment>
@@ -17,7 +18,16 @@ class Dashboard extends Component {
         <section className='main-container'>
           <Navbar />
           <div className='content-container'>
-            Dashboard
+            <div className='course-page-container'>
+              <h3 className='header'>Dashboard</h3>
+              <div className='items-container'>
+                <Table
+                  sizeClass='item-container--sm'
+                  fields={ assignmentFields }
+                  data={ assignmentList }
+                />
+              </div>
+            </div>
           </div>
         </section>
       </Fragment>
@@ -25,11 +35,25 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ assignments }) {
-  const assignmentsObj = assignments.items
+function mapStateToProps({ courses, assignments }) {
+  const assignmentsByCourseObj = assignments.items
+  const courseItems = courses.items
+
+  const assignmentFields = {
+    'Course': 'courseShortname',
+    'Assignment': 'name',
+    'Due Date': 'dueDate',
+    'Status': 'status'
+  }
+
+  let assignmentList = formatDataForTable(
+    assignmentsByCourseObj, courseItems, 'dueDate')
+
+  assignmentList.sort((a, b) => statusDueDateSort(a, b))
 
   return {
-    assignmentsObj
+    assignmentFields,
+    assignmentList
   }
 }
 
