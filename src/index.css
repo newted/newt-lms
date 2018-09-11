@@ -141,6 +141,7 @@ tbody > tr:hover {
 }
 
 .button {
+  background-color: #fff;
   border: 1px solid #ccc;
   padding: .5rem .75rem;
   font-size: .9rem;
@@ -155,7 +156,12 @@ tbody > tr:hover {
 }
 
 .show-completed-btn:hover {
+  /* background-color: lightgreen; */
+}
+
+.ltgreen-btn {
   background-color: lightgreen;
+  border: 1px solid #999;
 }
 
 .justify-right {

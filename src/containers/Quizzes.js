@@ -36,7 +36,7 @@ class Quizzes extends Component {
                 <div className='item-container--lg'>
                   <div className='button-container justify-right'>
                     <button
-                      className='button show-completed-btn'
+                      className={'button show-completed-btn ' + (showCompleted ? 'ltgreen-btn' : '')}
                       onClick={ this.handleShowCompleted }>
                         Show Completed
                     </button>
