@@ -23,7 +23,6 @@ class Assignments extends Component {
   render() {
     const { fields, assignmentList } = this.props
     const { showCompleted } = this.state
-    // console.log(showCompleted)
 
     return (
       <Fragment>

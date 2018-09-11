@@ -48,45 +48,9 @@ class Table extends Component {
             </thead>
             <tbody>
               { showCompleted
-                ? data.map((object) => (
-                    <tr key={ object['id']}>
-                      { Object.keys(fields).map((header) => {
-                        const key = fields[header]
-
-                        if (key === 'status') {
-                          return <StatusIcon
-                            key={ object['id'] + key }
-                            data={ object } />
-                        } else {
-                          return (
-                            <td key={ object['id'] + key }>
-                              { object[key] }
-                            </td>
-                          )
-                        }
-                      })}
-                    </tr>
-                  ))
+                ? data.map((object) => mapObjectToTableRow(object, fields))
                 : data.filter((object) => object.status !== 'Complete')
-                    .map((object) => (
-                      <tr key={ object['id']}>
-                        { Object.keys(fields).map((header) => {
-                          const key = fields[header]
-
-                          if (key === 'status') {
-                            return <StatusIcon
-                              key={ object['id'] + key }
-                              data={ object } />
-                          } else {
-                            return (
-                              <td key={ object['id'] + key }>
-                                { object[key] }
-                              </td>
-                            )
-                          }
-                        })}
-                      </tr>
-                    ))
+                    .map((object) => mapObjectToTableRow(object, fields))
               }
             </tbody>
           </table>
@@ -94,6 +58,29 @@ class Table extends Component {
       </div>
     )
   }
+}
+
+// Map item info from object into table row
+function mapObjectToTableRow(object, fields) {
+  return (
+    <tr key={ object['id']}>
+      { Object.keys(fields).map((header) => {
+        const key = fields[header]
+
+        if (key === 'status') {
+          return <StatusIcon
+            key={ object['id'] + key }
+            data={ object } />
+        } else {
+          return (
+            <td key={ object['id'] + key }>
+              { object[key] }
+            </td>
+          )
+        }
+      })}
+    </tr>
+  )
 }
 
 function mapStateToProps(_, { sizeClass, fields, data, title, showCompleted }) {
