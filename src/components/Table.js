@@ -23,7 +23,7 @@ const StatusIcon = ({ data }) => {
 
 class Table extends Component {
   render() {
-    const { sizeClass, fields, data, title } = this.props
+    const { sizeClass, fields, data, title, showCompleted } = this.props
 
     let tableStyle = {}
     if (sizeClass === 'item-container--sm') {
@@ -47,25 +47,47 @@ class Table extends Component {
               </tr>
             </thead>
             <tbody>
-              { data.map((object) => (
-                <tr key={ object['id']}>
-                  { Object.keys(fields).map((header) => {
-                    const key = fields[header]
+              { showCompleted
+                ? data.map((object) => (
+                    <tr key={ object['id']}>
+                      { Object.keys(fields).map((header) => {
+                        const key = fields[header]
 
-                    if (key === 'status') {
-                      return <StatusIcon
-                        key={ object['id'] + key }
-                        data={ object } />
-                    } else {
-                      return (
-                        <td key={ object['id'] + key }>
-                          { object[key] }
-                        </td>
-                      )
-                    }
-                  })}
-                </tr>
-              ))}
+                        if (key === 'status') {
+                          return <StatusIcon
+                            key={ object['id'] + key }
+                            data={ object } />
+                        } else {
+                          return (
+                            <td key={ object['id'] + key }>
+                              { object[key] }
+                            </td>
+                          )
+                        }
+                      })}
+                    </tr>
+                  ))
+                : data.filter((object) => object.status !== 'Complete')
+                    .map((object) => (
+                      <tr key={ object['id']}>
+                        { Object.keys(fields).map((header) => {
+                          const key = fields[header]
+
+                          if (key === 'status') {
+                            return <StatusIcon
+                              key={ object['id'] + key }
+                              data={ object } />
+                          } else {
+                            return (
+                              <td key={ object['id'] + key }>
+                                { object[key] }
+                              </td>
+                            )
+                          }
+                        })}
+                      </tr>
+                    ))
+              }
             </tbody>
           </table>
         </div>
@@ -74,12 +96,13 @@ class Table extends Component {
   }
 }
 
-function mapStateToProps(_, { sizeClass, fields, data, title }) {
+function mapStateToProps(_, { sizeClass, fields, data, title, showCompleted }) {
   return {
     sizeClass,
     fields,
     data,
-    title
+    title,
+    showCompleted
   }
 }
 

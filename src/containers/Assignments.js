@@ -8,8 +8,22 @@ import Table from '../components/Table'
 import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 
 class Assignments extends Component {
+  state = {
+    showCompleted: false
+  }
+
+  handleShowCompleted = (e) => {
+    e.preventDefault()
+
+    this.setState((prevState) => ({
+      showCompleted: !prevState.showCompleted
+    }))
+  }
+
   render() {
     const { fields, assignmentList } = this.props
+    const { showCompleted } = this.state
+    // console.log(showCompleted)
 
     return (
       <Fragment>
@@ -20,10 +34,20 @@ class Assignments extends Component {
             <div className='courses-container'>
               <h3 className='header'>Assignments</h3>
               <div className='items-container'>
+                <div className='item-container--lg'>
+                  <div className='button-container justify-right'>
+                    <button
+                      className='button show-completed-btn'
+                      onClick={ this.handleShowCompleted }>
+                        Show Completed
+                    </button>
+                  </div>
+                </div>
                 <Table
                   sizeClass='item-container--lg'
                   fields={ fields }
                   data={ assignmentList }
+                  showCompleted={ showCompleted }
                 />
               </div>
             </div>

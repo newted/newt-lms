@@ -136,6 +136,33 @@ tbody > tr:hover {
   margin: 1rem 2% 0 2%;
 }
 
+.button-container {
+  /* margin-bottom: 1rem; */
+}
+
+.button {
+  border: 1px solid #ccc;
+  padding: .5rem .75rem;
+  font-size: .9rem;
+  line-height: 1.25;
+  border-radius: .5rem;
+  transition: all .15s ease-in-out;
+}
+
+.button:hover {
+  transition: .15s ease-in-out;
+  cursor: pointer;
+}
+
+.show-completed-btn:hover {
+  background-color: lightgreen;
+}
+
+.justify-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .table-container {
   border: 1px solid #ccc;
   border-radius: .5rem;
