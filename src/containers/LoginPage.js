@@ -6,6 +6,15 @@ class LoginPage extends Component {
     activeTab: 'Sign Up'
   }
 
+  // Handle tab switching (Sign Up and Sign In) on login panel
+  handleTabs = (e) => {
+    const tab = e.target.innerHTML
+
+    this.setState(() => ({
+      activeTab: tab
+    }))
+  }
+
   render() {
     const { activeTab } = this.state
 
@@ -71,7 +80,7 @@ class LoginPage extends Component {
                   </form>
                 </div>
               </div>
-            : <div className='panel login-panel'>
+            : <div className='login-panel'>
                 <div className='login-panel--tabs'>
                   <div className='login-tab left-tab'
                     onClick={ this.handleTabs }>
