@@ -21,6 +21,21 @@ a {
   color: black;
 }
 
+.input {
+  display: block;
+  margin: .5rem;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border-radius: .5rem;
+  min-width: 0; /* For some reason this fixes overflow bug on Firefox */
+}
+
 /* Table */
 table {
   border-collapse: collapse;
@@ -192,6 +207,119 @@ tbody > tr:hover {
   margin: 0;
   margin-bottom: 1rem;
   font-weight: 500;
+}
+
+/** Login Page CSS **/
+
+.login-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: #38ceff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-title {
+  font-size: 8rem;
+  color: white;
+  margin-top: 0;
+}
+
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #eee;
+  border-radius: .5rem;
+  padding: 0;
+  width: 90%;
+  max-width: 500px;
+}
+
+.login-panel--tabs {
+  display: flex;
+  width: 100%;
+}
+
+.login-tab {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  background-color: #ddd;
+  color: #666;
+  width: 50%;
+  margin: auto;
+  padding: 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.left-tab {
+  border-top-left-radius: .5rem;
+  border-right: 1px solid #ccc;
+}
+
+.right-tab {
+  border-top-right-radius: .5rem;
+}
+
+.active-tab {
+  background-color: #eee;
+  color: black;
+  border-bottom: none;
+  font-weight: 600;
+}
+
+.login-panel--header {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.login-panel--body {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.login-form--group {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  .login-form--group {
+    flex-direction: column;
+  }
+}
+
+.login-button {
+  color: #0396ff;
+  margin: 1.5rem auto;
+  min-width: 150px;
+}
+
+.login-button:hover {
+  background-color: rgb(56,206,255,0.15);
+  border-color: #0396ff;
 }
 
 /** Course Card CSS **/
