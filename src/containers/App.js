@@ -6,6 +6,7 @@ import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared.js'
 // Containers/Components
 import Dashboard from './Dashboard'
+import LoginPage from './LoginPage'
 import Courses from './Courses'
 import CoursePage from './CoursePage'
 import Assignments from './Assignments'
@@ -28,6 +29,7 @@ class App extends Component {
               ? null
               : <Switch>
                   <Route path='/' exact component={ Dashboard } />
+                  <Route path='/login' component={ LoginPage } />
                   <Route path='/courses' exact component={ Courses } />
                   <Route path='/courses/:courseId' component={ CoursePage } />
                   <Route path='/assignments' component={ Assignments } />
