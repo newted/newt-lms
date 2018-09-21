@@ -1,4 +1,4 @@
-import db from '../backend/db'
+import schoolDb from '../backend/db'
 
 export const REQUEST_ASSIGNMENTS = 'REQUEST_ASSIGNMENTS'
 export const RECEIVE_ASSIGNMENTS = 'RECEIVE_ASSIGNMENTS'
@@ -21,11 +21,11 @@ export function getAllAssignments(studentId) {
     dispatch(requestAssignments())
     let assignments = {}
 
-    return db.collection('students').doc(studentId).collection('enrolment').get()
+    return schoolDb.collection('students').doc(studentId).collection('enrolment').get()
       .then((snap) => {
         let promises = []
         snap.forEach((docRef) => {
-          promises.push(db.collection('students')
+          promises.push(schoolDb.collection('students')
               .doc(studentId)
             .collection('enrolment')
               .doc(docRef.id)
@@ -44,19 +44,3 @@ export function getAllAssignments(studentId) {
       })
   }
 }
-
-// export function getAssignments() {
-//   return (dispatch) => {
-//     dispatch(requestAssignments())
-//     return db.collection('assignments').get()
-//       .then((snap) => {
-//         let assignments = {}
-//
-//         snap.forEach((docRef) => {
-//           assignments[docRef.id] = docRef.data()
-//         })
-//
-//         dispatch(receiveAssignments(assignments))
-//       })
-//   }
-// }

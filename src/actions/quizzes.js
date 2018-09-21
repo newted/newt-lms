@@ -1,4 +1,4 @@
-import db from '../backend/db'
+import schoolDb from '../backend/db'
 
 export const REQUEST_QUIZZES = 'REQUEST_QUIZZES'
 export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES'
@@ -21,11 +21,11 @@ export function getAllQuizzes(studentId) {
     dispatch(requestQuizzes())
     let quizzes = {}
 
-    return db.collection('students').doc(studentId).collection('enrolment').get()
+    return schoolDb.collection('students').doc(studentId).collection('enrolment').get()
       .then((snap) => {
         let promises = []
         snap.forEach((docRef) => {
-          promises.push(db.collection('students')
+          promises.push(schoolDb.collection('students')
               .doc(studentId)
             .collection('enrolment')
               .doc(docRef.id)
@@ -48,7 +48,7 @@ export function getAllQuizzes(studentId) {
 export function getQuizzes() {
   return (dispatch) => {
     dispatch(requestQuizzes())
-    return db.collection('quizzes').get()
+    return schoolDb.collection('quizzes').get()
       .then((snap) => {
         let quizzes = {}
 

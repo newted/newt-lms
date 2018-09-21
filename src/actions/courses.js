@@ -1,4 +1,4 @@
-import db from '../backend/db'
+import schoolDb from '../backend/db'
 
 export const REQUEST_COURSES = 'REQUEST_COURSES'
 export const RECEIVE_COURSES = 'RECEIVE_COURSES'
@@ -19,7 +19,7 @@ function receiveCourses(courses) {
 export function getCourses() {
   return (dispatch) => {
     dispatch(requestCourses())
-    return db.collection('courses').get()
+    return schoolDb.collection('courses').get()
       .then((snap) => {
         let courses = {}
 

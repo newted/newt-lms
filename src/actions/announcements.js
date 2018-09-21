@@ -1,4 +1,4 @@
-import db from '../backend/db'
+import schoolDb from '../backend/db'
 
 export const REQUEST_ANNOUNCEMENTS = 'REQUEST_ANNOUNCEMENTS'
 export const RECEIVE_ANNOUNCEMENTS = 'RECEIVE_ANNOUNCEMENTS'
@@ -21,14 +21,14 @@ export function getAllAnnouncements(studentId) {
     dispatch(requestAnnouncements())
     let announcements = {}
 
-    return db.collection('students').doc(studentId).collection('enrolment').get()
+    return schoolDb.collection('students').doc(studentId).collection('enrolment').get()
       .then((snap) => {
         let promises = []
         snap.forEach((docRef) => {
           // .get() returns a promise, so append all promises to an array and
           // run them all afterwards so that announcements object is ready to be
           // dispatched
-          promises.push(db.collection('students')
+          promises.push(schoolDb.collection('students')
               .doc(studentId)
             .collection('enrolment')
               .doc(docRef.id)
@@ -46,19 +46,3 @@ export function getAllAnnouncements(studentId) {
       })
   }
 }
-
-// export function getAnnouncements(courseId) {
-//   return (dispatch) => {
-//     dispatch(requestAnnouncements())
-//     return db.collection('courses').doc(courseId).collection('announcements').get()
-//       .then((snap) => {
-//         let announcements = {}
-//
-//         snap.forEach((docRef) => {
-//           announcements[docRef.id] = docRef.data()
-//         })
-//
-//         dispatch(receiveAnnouncements(announcements))
-//       })
-//   }
-// }
