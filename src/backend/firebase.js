@@ -1,8 +1,9 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/auth'
 
-// Initialize Firebase
-var config = {
+// School config
+let schoolConfig = {
   apiKey: "AIzaSyBUKcW_W14-DSoEmm3ntXNLhSXKkqU651Q",
   authDomain: "newt-lms.firebaseapp.com",
   databaseURL: "https://newt-lms.firebaseio.com",
@@ -11,7 +12,6 @@ var config = {
   messagingSenderId: "205125363205"
 }
 
-firebase.initializeApp(config)
+let schoolInstance = firebase.initializeApp(schoolConfig, "schoolConfig")
 
-
-export default firebase
+export default schoolInstance

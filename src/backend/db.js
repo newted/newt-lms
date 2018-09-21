@@ -1,7 +1,7 @@
-import firebase from './firebase'
+import schoolInstance from './firebase'
 
-const db = firebase.firestore()
+const schoolDb = schoolInstance.firestore()
 const settings = {timestampsInSnapshots: true}
-db.settings(settings)
+schoolDb.settings(settings)
 
-export default db
+export default schoolDb

@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
 import firebase from '../backend/firebase'
+// API
+// import { createUserViaEmail } from '../actions/authedUser'
 
 class LoginPage extends Component {
   state = {
     activeTab: 'Sign Up'
+  }
+
+  handleSignUp = (e) => {
+    e.preventDefault()
+
+    const auth = firebase.auth()
+
+    const { firstName, lastName, email, password } = e.target.elements
   }
 
   // Handle tab switching (Sign Up and Sign In) on login panel
