@@ -1,4 +1,8 @@
-import { CREATE_USER, SET_AUTHED_USER } from '../actions/authedUser'
+import {
+  CREATE_USER,
+  REQUEST_SIGN_IN_USER,
+  SET_AUTHED_USER
+} from '../actions/authedUser'
 
 export default function authedUser(state = {
   isFetching: false,
@@ -9,6 +13,11 @@ action
 ) {
   switch (action.type) {
     case CREATE_USER:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case REQUEST_SIGN_IN_USER:
       return {
         ...state,
         isFetching: true

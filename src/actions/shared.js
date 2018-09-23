@@ -3,7 +3,6 @@ import { getCourses } from './courses'
 import { getAllAssignments } from './assignments'
 import { getAllAnnouncements } from './announcements'
 import { getAllQuizzes } from './quizzes'
-import { setAuthedUser } from './authedUser'
 
 const STUDENT_ID = 'A01036028'
 
