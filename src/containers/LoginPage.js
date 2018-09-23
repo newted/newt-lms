@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import firebase from '../backend/firebase'
 // API
-// import { createUserViaEmail } from '../actions/authedUser'
+import { createUserViaEmail } from '../actions/authedUser'
 
 class LoginPage extends Component {
   state = {
@@ -11,9 +12,18 @@ class LoginPage extends Component {
   handleSignUp = (e) => {
     e.preventDefault()
 
+    const { dispatch } = this.props
     const auth = firebase.auth()
 
     const { firstName, lastName, email, password } = e.target.elements
+
+    // Create new user
+    dispatch(createUserViaEmail(
+      email.value,
+      password.value,
+      firstName.value,
+      lastName.value
+    ))
   }
 
   // Handle tab switching (Sign Up and Sign In) on login panel
@@ -133,4 +143,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage
+export default connect()(LoginPage)
