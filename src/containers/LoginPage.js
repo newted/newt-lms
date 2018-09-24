@@ -5,7 +5,7 @@ import { createUserViaEmail, signInUserViaEmail } from '../actions/authedUser'
 
 class LoginPage extends Component {
   state = {
-    activeTab: 'Sign Up'
+    activeTab: 'Sign In'
   }
 
   // Handle account creation
@@ -142,6 +142,12 @@ class LoginPage extends Component {
                       type='submit'>
                         Submit
                     </button>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>OR</div>
+                      <button
+                        className='button login-button'
+                        type='submit'>
+                          Demo Sign In
+                      </button>
                   </form>
                 </div>
               </div>

@@ -15,8 +15,9 @@ import Quizzes from './Quizzes'
 class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props
+    const studentId = 'A01036028'
 
-    dispatch(handleInitialData())
+    dispatch(handleInitialData(studentId))
   }
 
   render() {
