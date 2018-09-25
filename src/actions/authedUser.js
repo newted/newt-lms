@@ -1,4 +1,5 @@
 import newt from '../backend/newt'
+import newtDb from '../backend/newtDb'
 
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 export const CREATE_USER = 'CREATE_USER'
@@ -27,6 +28,7 @@ export function createUserViaEmail(email, password, firstName, lastName) {
       .then(() => auth.onAuthStateChanged((user) => {
         if (user) {
           console.log('User signed up')
+          // add name and email to user profile
           user.updateProfile({
             displayName: firstName + ' ' + lastName,
             email: email
@@ -40,7 +42,16 @@ export function createUserViaEmail(email, password, firstName, lastName) {
                 lastName: name.split(' ')[1],
                 email: user.email
               }
+              // Dispatch info to store
               dispatch(setAuthedUser(userInfo))
+
+              // Add data to Newt User database
+              newtDb.collection('users').doc(user.uid).set({
+                firstName: name.split(' ')[0],
+                lastName: name.split(' ')[1],
+                id: user.uid,
+                email: user.email
+              })
             }
           }))
         }
