@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+// Components
+import Dashboard from './Dashboard'
 // API
 import { createUserViaEmail, signInUserViaEmail } from '../actions/authedUser'
 
@@ -44,8 +47,18 @@ class LoginPage extends Component {
     }))
   }
 
+  componentDidMount() {
+    const { authedUser } = this.props
+    console.log(authedUser)
+  }
+
   render() {
     const { activeTab } = this.state
+    const { authedUser } = this.props
+
+    if (authedUser.exists) {
+      return <Redirect to='/' />
+    }
 
     return (
       <div className='login-page'>
@@ -158,4 +171,10 @@ class LoginPage extends Component {
   }
 }
 
-export default connect()(LoginPage)
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(LoginPage)
