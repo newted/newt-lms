@@ -26,6 +26,18 @@ function createUser() {
   }
 }
 
+function requestSignInUser() {
+  return {
+    type: REQUEST_SIGN_IN_USER
+  }
+}
+
+function requestSignOutUser() {
+  return {
+    type: REQUEST_SIGN_OUT_USER
+  }
+}
+
 export function createUserViaEmail(email, password, firstName, lastName) {
   const auth = newt.auth()
 
@@ -70,12 +82,6 @@ export function createUserViaEmail(email, password, firstName, lastName) {
   }
 }
 
-function requestSignInUser() {
-  return {
-    type: REQUEST_SIGN_IN_USER
-  }
-}
-
 export function signInUserViaEmail(email, password) {
   const auth = newt.auth()
 
@@ -104,12 +110,6 @@ export function signInUserViaEmail(email, password) {
   }
 }
 
-function requestSignOutUser() {
-  return {
-    type: REQUEST_SIGN_OUT_USER
-  }
-}
-
 export function signOutUser() {
   const auth = newt.auth()
 
@@ -125,5 +125,18 @@ export function signOutUser() {
     .catch((error) => {
       console.log(error)
     })
+  }
+}
+
+export function signInDemoUser() {
+  return (dispatch) => {
+    const userInfo = {
+      id: 'demouser',
+      firstName: 'Demo',
+      lastName: 'User',
+      email: 'demouser@newt.com'
+    }
+
+    dispatch(setAuthedUser(userInfo))
   }
 }

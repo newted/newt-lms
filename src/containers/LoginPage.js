@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 // API
-import { createUserViaEmail, signInUserViaEmail } from '../actions/authedUser'
+import {
+  createUserViaEmail,
+  signInUserViaEmail,
+  signInDemoUser
+} from '../actions/authedUser'
 
 class LoginPage extends Component {
   state = {
@@ -34,6 +38,13 @@ class LoginPage extends Component {
 
     // Sign In user
     dispatch(signInUserViaEmail(email.value, password.value))
+  }
+
+  // Handle Demo sign in
+  handleDemoSignIn = () => {
+    const { dispatch } = this.props
+
+    dispatch(signInDemoUser())
   }
 
   // Handle tab switching (Sign Up and Sign In) on login panel
@@ -153,13 +164,13 @@ class LoginPage extends Component {
                       type='submit'>
                         Submit
                     </button>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>OR</div>
-                      <button
-                        className='button login-button'
-                        type='submit'>
-                          Demo Sign In
-                      </button>
                   </form>
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>OR</div>
+                  <button
+                    className='button login-button'
+                    onClick={ this.handleDemoSignIn }>
+                      Demo Sign In
+                  </button>
                 </div>
               </div>
           }
