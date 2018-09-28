@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-// Components
-import Dashboard from './Dashboard'
 // API
 import { createUserViaEmail, signInUserViaEmail } from '../actions/authedUser'
 

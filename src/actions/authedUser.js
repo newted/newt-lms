@@ -2,13 +2,21 @@ import newt from '../backend/newt'
 import newtDb from '../backend/newtDb'
 
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
+export const REMOVE_AUTHED_USER = 'REMOVE_AUTHED_USER'
 export const CREATE_USER = 'CREATE_USER'
 export const REQUEST_SIGN_IN_USER = 'REQUEST_SIGN_IN_USER'
+export const REQUEST_SIGN_OUT_USER = 'REQUEST_SIGN_OUT_USER'
 
 export function setAuthedUser(user) {
   return {
     type: SET_AUTHED_USER,
     user
+  }
+}
+
+export function removeAuthedUser() {
+  return {
+    type: REMOVE_AUTHED_USER
   }
 }
 
@@ -93,5 +101,29 @@ export function signInUserViaEmail(email, password) {
       .catch((error) => {
         console.log(error)
       })
+  }
+}
+
+function requestSignOutUser() {
+  return {
+    type: REQUEST_SIGN_OUT_USER
+  }
+}
+
+export function signOutUser() {
+  const auth = newt.auth()
+
+  return (dispatch) => {
+    dispatch(requestSignOutUser())
+
+    auth.signOut()
+    .then(() => auth.onAuthStateChanged(() => {
+      console.log('User signed out')
+
+      dispatch(removeAuthedUser())
+    }))
+    .catch((error) => {
+      console.log(error)
+    })
   }
 }

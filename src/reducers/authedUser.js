@@ -1,7 +1,9 @@
 import {
   CREATE_USER,
   REQUEST_SIGN_IN_USER,
-  SET_AUTHED_USER
+  REQUEST_SIGN_OUT_USER,
+  SET_AUTHED_USER,
+  REMOVE_AUTHED_USER
 } from '../actions/authedUser'
 
 export default function authedUser(state = {
@@ -22,12 +24,23 @@ action
         ...state,
         isFetching: true
       }
+    case REQUEST_SIGN_OUT_USER:
+      return {
+        ...state,
+        isFetching: true
+      }
     case SET_AUTHED_USER:
       return {
         ...state,
         isFetching: false,
         exists: true,
         items: action.user
+      }
+    case REMOVE_AUTHED_USER:
+      return {
+        isFetching: false,
+        exists: false,
+        items: {}
       }
     default:
       return state
