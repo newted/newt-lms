@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 // Components
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
@@ -7,7 +8,11 @@ import CourseCard from '../components/CourseCard'
 
 class Courses extends Component {
   render() {
-    const { courses } = this.props
+    const { authedUser, courses } = this.props
+
+    if (!authedUser.exists) {
+      return <Redirect to='/login' />
+    }
 
     return (
       <Fragment>

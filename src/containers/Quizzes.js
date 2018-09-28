@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 // Components
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
@@ -21,8 +22,12 @@ class Quizzes extends Component {
   }
 
   render() {
-    const { fields, quizList } = this.props
+    const { authedUser, fields, quizList } = this.props
     const { showCompleted } = this.state
+
+    if (!authedUser.exists) {
+      return <Redirect to='/login' />
+    }
 
     return (
       <Fragment>
@@ -57,7 +62,7 @@ class Quizzes extends Component {
   }
 }
 
-function mapStateToProps({ courses, quizzes}) {
+function mapStateToProps({ authedUser, courses, quizzes}) {
   const quizzesByCourseObj = quizzes.items
   const courseItems = courses.items
 
@@ -74,6 +79,7 @@ function mapStateToProps({ courses, quizzes}) {
   quizList.sort((a, b) => statusDueDateSort(a, b))
 
   return {
+    authedUser,
     fields,
     quizList
   }

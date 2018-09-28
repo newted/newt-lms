@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 // Components
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
@@ -21,8 +22,14 @@ class Assignments extends Component {
   }
 
   render() {
-    const { fields, assignmentList } = this.props
+    const { fields, assignmentList, authedUser } = this.props
     const { showCompleted } = this.state
+
+    console.log(authedUser)
+
+    if (!authedUser.exists) {
+      return <Redirect to='/login' />
+    }
 
     return (
       <Fragment>
@@ -57,7 +64,7 @@ class Assignments extends Component {
   }
 }
 
-function mapStateToProps({ courses, assignments }) {
+function mapStateToProps({ courses, assignments, authedUser }) {
   const assignmentsByCourseObj = assignments.items
   const courseItems = courses.items
   // Table header fields: object key.
@@ -78,7 +85,8 @@ function mapStateToProps({ courses, assignments }) {
 
   return {
     fields,
-    assignmentList
+    assignmentList,
+    authedUser
   }
 }
 

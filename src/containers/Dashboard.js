@@ -1,6 +1,7 @@
 // Frameworks/Libraries
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 // Components
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
@@ -11,9 +12,13 @@ import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 class Dashboard extends Component {
   render() {
     const {
-      announcementFields, announcementList, assignmentFields,
+      authedUser, announcementFields, announcementList, assignmentFields,
       assignmentList, quizFields, quizList
     } = this.props
+
+    if (!authedUser.exists) {
+      return <Redirect to='/login' />
+    }
 
     return (
       <Fragment>
@@ -51,7 +56,9 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ courses, announcements, assignments, quizzes }) {
+function mapStateToProps(
+  { authedUser, courses, announcements, assignments, quizzes }
+) {
   const announcementsByCourseObj = announcements.items
   const assignmentsByCourseObj = assignments.items
   const quizzesByCourseObj = quizzes.items
@@ -88,6 +95,7 @@ function mapStateToProps({ courses, announcements, assignments, quizzes }) {
   quizList.sort((a, b) => statusDueDateSort(a, b))
 
   return {
+    authedUser,
     announcementFields,
     assignmentFields,
     quizFields,

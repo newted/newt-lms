@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 // Components
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
@@ -11,11 +12,16 @@ import { objectToArray } from '../utils/helpers'
 class CoursePage extends Component {
   render() {
     const {
-      isFetching, course, assignmentArray, announcementArray, quizArray
+      authedUser, isFetching, course, assignmentArray,
+      announcementArray, quizArray
     } = this.props
 
     if (isFetching) {
       return <p>Loading...</p>
+    }
+
+    if (!authedUser.exists) {
+      return <Redirect to='/login' />
     }
 
     return (
@@ -58,7 +64,7 @@ class CoursePage extends Component {
 }
 
 function mapStateToProps(
-  { courses, assignments, announcements, quizzes },
+  { authedUser, courses, assignments, announcements, quizzes },
   props
 ) {
   const { courseId } = props.match.params
@@ -89,6 +95,7 @@ function mapStateToProps(
   const quizArray = objectToArray(quizObj, 'dueDate')
 
   return {
+    authedUser,
     courseId,
     isFetching,
     course,
