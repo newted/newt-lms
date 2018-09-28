@@ -1,0 +1,22 @@
+{
+  "baseConfigs": {
+    "newtConfig": {
+      "apiKey": "AIzaSyDOru0UYqrNB48qMY8DaPyTTykbNpS7KFE",
+      "authDomain": "newt-ed.firebaseapp.com",
+      "databaseURL": "https://newt-ed.firebaseio.com",
+      "projectId": "newt-ed",
+      "storageBucket": "newt-ed.appspot.com",
+      "messagingSenderId": "52783138013"
+    }
+  },
+  "schoolConfigs": {
+    "myConfig": {
+      "apiKey": "AIzaSyBUKcW_W14-DSoEmm3ntXNLhSXKkqU651Q",
+      "authDomain": "newt-lms.firebaseapp.com",
+      "databaseURL": "https://newt-lms.firebaseio.com",
+      "projectId": "newt-lms",
+      "storageBucket": "newt-lms.appspot.com",
+      "messagingSenderId": "205125363205"
+    }
+  }
+}

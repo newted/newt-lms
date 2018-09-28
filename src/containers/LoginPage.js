@@ -56,11 +56,6 @@ class LoginPage extends Component {
     }))
   }
 
-  componentDidMount() {
-    const { authedUser } = this.props
-    console.log(authedUser)
-  }
-
   render() {
     const { activeTab } = this.state
     const { authedUser } = this.props
