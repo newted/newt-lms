@@ -38,15 +38,17 @@ class Quizzes extends Component {
             <div className='courses-container'>
               <h3 className='header'>Quizzes</h3>
               <div className='items-container'>
-                <div className='item-container--lg'>
-                  <div className='button-container justify-right'>
-                    <button
-                      className={'button show-completed-btn ' + (showCompleted ? 'ltgreen-btn' : '')}
-                      onClick={ this.handleShowCompleted }>
-                        Show Completed
-                    </button>
+                { quizList.length > 0 && (
+                  <div className='item-container--lg'>
+                    <div className='button-container justify-right'>
+                      <button
+                        className={'button show-completed-btn ' + (showCompleted ? 'ltgreen-btn' : '')}
+                        onClick={ this.handleShowCompleted }>
+                          Show Completed
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
                 <Table
                   type='Quizzes'
                   sizeClass='item-container--lg'
