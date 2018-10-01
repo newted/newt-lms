@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import CourseCard from '../components/CourseCard'
+import NoInfo from '../components/NoInfo'
 
 class Courses extends Component {
   render() {
@@ -23,9 +24,12 @@ class Courses extends Component {
             <div className='courses-container'>
               <h3 className='header'>Courses</h3>
               <div className='courses-card-container'>
-                { Object.keys(courses.items).map((course) => (
-                  <CourseCard key={ course } id={ course }/>
-                ))}
+                { Object.keys(courses.items).length > 0
+                  ? Object.keys(courses.items).map((course) => (
+                      <CourseCard key={ course } id={ course }/>
+                    ))
+                  : <NoInfo title='Courses' sizeClass='item-container--lg'/>
+                }
               </div>
             </div>
           </div>

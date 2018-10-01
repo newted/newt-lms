@@ -456,3 +456,8 @@ tbody > tr:hover {
 .panel-body:last-child {
   border-bottom: none;
 }
+
+.no-info {
+  font-size: 1rem;
+  padding: .5rem;
+}
