@@ -18,10 +18,12 @@ class App extends Component {
 
     if (authedUser.exists) {
       const { currentInstitution } = authedUser.items
-      const { studentId } = authedUser.items.institutions[currentInstitution]
 
-      // Fetch course data
-      dispatch(handleInitialData(studentId))
+      if (currentInstitution) {
+        const { studentId } = authedUser.items.institutions[currentInstitution]
+        // Fetch course data
+        dispatch(handleInitialData(studentId))
+      }
     }
   }
 
