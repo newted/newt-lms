@@ -48,6 +48,7 @@ class Quizzes extends Component {
                   </div>
                 </div>
                 <Table
+                  type='Quizzes'
                   sizeClass='item-container--lg'
                   fields={ fields }
                   data={ quizList }

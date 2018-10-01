@@ -70,7 +70,9 @@ export function createUserViaEmail(email, password, firstName, lastName) {
                 firstName: name.split(' ')[0],
                 lastName: name.split(' ')[1],
                 id: user.uid,
-                email: user.email
+                email: user.email,
+                institutions: {},
+                currentInstitution: ''
               })
             }
           }))
@@ -94,7 +96,7 @@ export function signInUserViaEmail(email, password) {
         if (user) {
           let userInfo = {}
 
-          // Grab data from Newt database 
+          // Grab data from Newt database
           newtDb.collection('users').doc(user.uid).get()
             .then((doc) => {
               if (doc.exists) {

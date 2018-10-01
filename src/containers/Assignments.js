@@ -48,6 +48,7 @@ class Assignments extends Component {
                   </div>
                 </div>
                 <Table
+                  type='Assignments'
                   sizeClass='item-container--lg'
                   fields={ fields }
                   data={ assignmentList }

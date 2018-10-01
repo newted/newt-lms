@@ -23,7 +23,7 @@ const StatusIcon = ({ data }) => {
 
 class Table extends Component {
   render() {
-    const { sizeClass, fields, data, title, showCompleted } = this.props
+    const { sizeClass, type, fields, data, title, showCompleted } = this.props
 
     let tableStyle = {}
     if (sizeClass === 'item-container--sm') {
@@ -38,22 +38,25 @@ class Table extends Component {
           <h3 className='header--3'>{ title }</h3>
         )}
         <div className='table-container'>
-          <table style={ tableStyle }>
-            <thead>
-              <tr>
-                { Object.keys(fields).map((header) => (
-                  <th key={ header }>{ header }</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              { showCompleted
-                ? data.map((object) => mapObjectToTableRow(object, fields))
-                : data.filter((object) => object.status !== 'Complete')
-                    .map((object) => mapObjectToTableRow(object, fields))
-              }
-            </tbody>
-          </table>
+          { Object.keys(data).length > 0
+            ? <table style={ tableStyle }>
+                <thead>
+                  <tr>
+                    { Object.keys(fields).map((header) => (
+                      <th key={ header }>{ header }</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  { showCompleted
+                    ? data.map((object) => mapObjectToTableRow(object, fields))
+                    : data.filter((object) => object.status !== 'Complete')
+                        .map((object) => mapObjectToTableRow(object, fields))
+                  }
+                </tbody>
+              </table>
+            : <div>You don't have any { type.toLowerCase() }</div>
+          }          
         </div>
       </div>
     )
@@ -83,9 +86,13 @@ function mapObjectToTableRow(object, fields) {
   )
 }
 
-function mapStateToProps(_, { sizeClass, fields, data, title, showCompleted }) {
+function mapStateToProps(
+  _,
+  { sizeClass, type, fields, data, title, showCompleted }
+) {
   return {
     sizeClass,
+    type,
     fields,
     data,
     title,

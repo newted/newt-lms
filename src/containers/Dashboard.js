@@ -30,18 +30,21 @@ class Dashboard extends Component {
               <h3 className='header'>Dashboard</h3>
               <div className='items-container'>
                 <Table
+                  type='Announcements'
                   sizeClass='item-container--sm'
                   fields={ announcementFields }
                   data={ announcementList }
                   title='Announcements'
                 />
                 <Table
+                  type='Assignments'
                   sizeClass='item-container--sm'
                   fields={ assignmentFields }
                   data={ assignmentList }
                   title='Assignments'
                 />
                 <Table
+                  type='Quizzes'
                   sizeClass='item-container--sm'
                   fields={ quizFields }
                   data={ quizList }
