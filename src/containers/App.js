@@ -13,11 +13,16 @@ import Assignments from './Assignments'
 import Quizzes from './Quizzes'
 
 class App extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props
-    const studentId = 'A01036028'
+  componentDidUpdate() {
+    const { authedUser, dispatch } = this.props
 
-    dispatch(handleInitialData(studentId))
+    if (authedUser.exists) {
+      const { currentInstitution } = authedUser.items
+      const { studentId } = authedUser.items.institutions[currentInstitution]
+
+      // Fetch course data
+      dispatch(handleInitialData(studentId))
+    }
   }
 
   render() {
@@ -46,6 +51,7 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
+    authedUser,
     loading: authedUser === null
   }
 }
