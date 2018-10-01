@@ -4,7 +4,7 @@ import 'firebase/auth'
 import firebaseConfig from '../firebase-config.json'
 
 // School config
-let schoolConfig = firebaseConfig['schoolConfigs']['myConfig']
+let schoolConfig = firebaseConfig['schoolConfigs']['BCITConfig']
 
 let schoolInstance = firebase.initializeApp(schoolConfig, "schoolConfig")
 

@@ -25,8 +25,6 @@ class Assignments extends Component {
     const { fields, assignmentList, authedUser } = this.props
     const { showCompleted } = this.state
 
-    console.log(authedUser)
-
     if (!authedUser.exists) {
       return <Redirect to='/login' />
     }

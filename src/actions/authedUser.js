@@ -92,16 +92,21 @@ export function signInUserViaEmail(email, password) {
       .then(() => auth.onAuthStateChanged((user) => {
         console.log('User signed in')
         if (user) {
-          const name = user.displayName
+          let userInfo = {}
 
-          const userInfo = {
-            id: user.uid,
-            firstName: name.split(' ')[0],
-            lastName: name.split(' ')[1],
-            email: user.email
-          }
-
-          dispatch(setAuthedUser(userInfo))
+          // Grab data from Newt database 
+          newtDb.collection('users').doc(user.uid).get()
+            .then((doc) => {
+              if (doc.exists) {
+                userInfo = doc.data()
+                dispatch(setAuthedUser(userInfo))
+              } else {
+                console.log('No such document')
+              }
+            })
+            .catch((error) => {
+              console.log(error)
+            })
         }
       }))
       .catch((error) => {
