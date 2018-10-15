@@ -1,3 +1,4 @@
+import { Auth } from 'aws-amplify'
 import newt from '../backend/newt'
 import newtDb from '../backend/newtDb'
 
@@ -85,32 +86,18 @@ export function createUserViaEmail(email, password, firstName, lastName) {
 }
 
 export function signInUserViaEmail(email, password) {
-  const auth = newt.auth()
-
   return (dispatch) => {
     dispatch(requestSignInUser())
 
-    return auth.signInWithEmailAndPassword(email, password)
-      .then(() => auth.onAuthStateChanged((user) => {
-        console.log('User signed in')
-        if (user) {
-          let userInfo = {}
+    return Auth.signIn(email, password)
+      .then((user) => {
+        console.log('User signed in', user)
 
-          // Grab data from Newt database
-          newtDb.collection('users').doc(user.uid).get()
-            .then((doc) => {
-              if (doc.exists) {
-                userInfo = doc.data()
-                dispatch(setAuthedUser(userInfo))
-              } else {
-                console.log('No such document')
-              }
-            })
-            .catch((error) => {
-              console.log(error)
-            })
+        const userInfo = {
+          username: user.username
         }
-      }))
+        dispatch(setAuthedUser(userInfo))
+      })
       .catch((error) => {
         console.log(error)
       })
