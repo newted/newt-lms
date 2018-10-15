@@ -11,6 +11,7 @@
 
 #config
 src/firebase-config.json
+src/aws-config.js
 
 # misc
 .DS_Store
