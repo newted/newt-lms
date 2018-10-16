@@ -1,5 +1,5 @@
 import {
-  CREATE_USER,
+  REQUEST_CREATE_USER,
   REQUEST_SIGN_IN_USER,
   REQUEST_SIGN_OUT_USER,
   SET_AUTHED_USER,
@@ -14,7 +14,7 @@ export default function authedUser(state = {
 action
 ) {
   switch (action.type) {
-    case CREATE_USER:
+    case REQUEST_CREATE_USER:
       return {
         ...state,
         isFetching: true
