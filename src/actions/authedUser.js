@@ -1,6 +1,4 @@
 import { Auth } from 'aws-amplify'
-import newt from '../backend/newt'
-import newtDb from '../backend/newtDb'
 
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 export const REMOVE_AUTHED_USER = 'REMOVE_AUTHED_USER'
@@ -82,17 +80,15 @@ export function signInUserViaEmail(email, password) {
 }
 
 export function signOutUser() {
-  const auth = newt.auth()
-
   return (dispatch) => {
     dispatch(requestSignOutUser())
 
-    auth.signOut()
-    .then(() => auth.onAuthStateChanged(() => {
-      console.log('User signed out')
+    Auth.signOut()
+    .then((data) => {
+      console.log(data)
 
       dispatch(removeAuthedUser())
-    }))
+    })
     .catch((error) => {
       console.log(error)
     })
