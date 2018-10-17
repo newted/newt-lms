@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 // API
-import { handleInitialData } from '../actions/shared.js'
+import { fetchCurrentUser } from '../actions/authedUser'
 // Containers/Components
 import Dashboard from './Dashboard'
 import LoginPage from './LoginPage'
@@ -13,17 +13,11 @@ import Assignments from './Assignments'
 import Quizzes from './Quizzes'
 
 class App extends Component {
-  componentDidUpdate() {
+  componentDidMount() {
     const { authedUser, dispatch } = this.props
 
-    if (authedUser.exists) {
-      const { currentInstitution } = authedUser.items
-
-      if (currentInstitution) {
-        const { studentId } = authedUser.items.institutions[currentInstitution]
-        // Fetch course data
-        dispatch(handleInitialData(studentId))
-      }
+    if (!authedUser.exists) {
+      dispatch(fetchCurrentUser())
     }
   }
 
@@ -54,7 +48,7 @@ class App extends Component {
 function mapStateToProps({ authedUser }) {
   return {
     authedUser,
-    loading: authedUser === null
+    loading: authedUser.isFetching === true
   }
 }
 

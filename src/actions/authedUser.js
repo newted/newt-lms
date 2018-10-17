@@ -5,6 +5,7 @@ export const REMOVE_AUTHED_USER = 'REMOVE_AUTHED_USER'
 export const REQUEST_CREATE_USER = 'REQUEST_CREATE_USER'
 export const REQUEST_SIGN_IN_USER = 'REQUEST_SIGN_IN_USER'
 export const REQUEST_SIGN_OUT_USER = 'REQUEST_SIGN_OUT_USER'
+export const REQUEST_CURRENT_USER = 'REQUEST_CURRENT_USER'
 
 export function setAuthedUser(user) {
   return {
@@ -34,6 +35,12 @@ function requestSignInUser() {
 function requestSignOutUser() {
   return {
     type: REQUEST_SIGN_OUT_USER
+  }
+}
+
+function requestCurrentUser() {
+  return {
+    type: REQUEST_CURRENT_USER
   }
 }
 
@@ -75,6 +82,26 @@ export function signInUserViaEmail(email, password) {
       })
       .catch((error) => {
         console.log(error)
+      })
+  }
+}
+
+export function fetchCurrentUser() {
+  return (dispatch) => {
+    dispatch(requestCurrentUser())
+
+    return Auth.currentAuthenticatedUser()
+      .then((user) => {
+        console.log(user)
+
+        const userInfo = {
+          username: user.username
+        }
+        dispatch(setAuthedUser(userInfo))
+      })
+      .catch((error) => {
+        console.log(error)
+        dispatch(removeAuthedUser())
       })
   }
 }
