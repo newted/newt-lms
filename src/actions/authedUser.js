@@ -31,12 +31,12 @@ export function createUserViaEmail(email, password, firstName, lastName) {
       username: email,
       password: password
     })
-      .then((user) => {
-        console.log(user)
+      .then((data) => {
+        console.log(data)
 
         const userInfo = {
-          username: user.username,
-          userId: user.sub
+          username: data.user.username,
+          userId: data.userSub
         }
         dispatch(setAuthedUser(userInfo))
       })
@@ -55,7 +55,8 @@ export function signInUserViaEmail(email, password) {
         console.log('User signed in', user)
 
         const userInfo = {
-          username: user.username
+          username: user.signInUserSession.idToken.payload.email,
+          userId: user.signInUserSession.idToken.payload.sub
         }
         dispatch(setAuthedUser(userInfo))
       })
