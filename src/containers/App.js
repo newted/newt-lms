@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 // API
-import { fetchCurrentUser } from '../actions/authedUser'
+import { retrieveCurrentUser } from '../actions/authedUser'
 // Containers/Components
 import Dashboard from './Dashboard'
 import LoginPage from './LoginPage'
@@ -14,11 +14,8 @@ import Quizzes from './Quizzes'
 
 class App extends Component {
   componentDidMount() {
-    const { authedUser, dispatch } = this.props
-
-    if (!authedUser.exists) {
-      dispatch(fetchCurrentUser())
-    }
+    const { dispatch } = this.props
+    dispatch(retrieveCurrentUser())
   }
 
   render() {

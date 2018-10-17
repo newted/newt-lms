@@ -86,7 +86,7 @@ export function signInUserViaEmail(email, password) {
   }
 }
 
-export function fetchCurrentUser() {
+export function retrieveCurrentUser() {
   return (dispatch) => {
     dispatch(requestCurrentUser())
 
