@@ -1,11 +1,14 @@
 import { Auth } from 'aws-amplify'
 
+export const REQUEST_AUTHENTICATION = 'REQUEST_AUTHENTICATION'
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
 export const REMOVE_AUTHED_USER = 'REMOVE_AUTHED_USER'
-export const REQUEST_CREATE_USER = 'REQUEST_CREATE_USER'
-export const REQUEST_SIGN_IN_USER = 'REQUEST_SIGN_IN_USER'
-export const REQUEST_SIGN_OUT_USER = 'REQUEST_SIGN_OUT_USER'
-export const REQUEST_CURRENT_USER = 'REQUEST_CURRENT_USER'
+
+function requestAuthentication() {
+  return {
+    type: REQUEST_AUTHENTICATION
+  }
+}
 
 export function setAuthedUser(user) {
   return {
@@ -20,33 +23,9 @@ export function removeAuthedUser() {
   }
 }
 
-function requestCreateUser() {
-  return {
-    type: REQUEST_CREATE_USER
-  }
-}
-
-function requestSignInUser() {
-  return {
-    type: REQUEST_SIGN_IN_USER
-  }
-}
-
-function requestSignOutUser() {
-  return {
-    type: REQUEST_SIGN_OUT_USER
-  }
-}
-
-function requestCurrentUser() {
-  return {
-    type: REQUEST_CURRENT_USER
-  }
-}
-
 export function createUserViaEmail(email, password, firstName, lastName) {
   return (dispatch) => {
-    dispatch(requestCreateUser())
+    dispatch(requestAuthentication())
 
     return Auth.signUp({
       username: email,
@@ -69,7 +48,7 @@ export function createUserViaEmail(email, password, firstName, lastName) {
 
 export function signInUserViaEmail(email, password) {
   return (dispatch) => {
-    dispatch(requestSignInUser())
+    dispatch(requestAuthentication())
 
     return Auth.signIn(email, password)
       .then((user) => {
@@ -88,7 +67,7 @@ export function signInUserViaEmail(email, password) {
 
 export function retrieveCurrentUser() {
   return (dispatch) => {
-    dispatch(requestCurrentUser())
+    dispatch(requestAuthentication())
 
     return Auth.currentAuthenticatedUser()
       .then((user) => {
@@ -108,7 +87,7 @@ export function retrieveCurrentUser() {
 
 export function signOutUser() {
   return (dispatch) => {
-    dispatch(requestSignOutUser())
+    dispatch(requestAuthentication())
 
     Auth.signOut()
     .then((data) => {
