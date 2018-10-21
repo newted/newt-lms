@@ -36,8 +36,24 @@ export function createUserViaEmail(email, password, firstName, lastName) {
 
         const userInfo = {
           username: data.user.username,
-          userId: data.userSub
+          userId: data.userSub,
+          // This info would actually be added to the Newt database
+          name: {
+            first: firstName,
+            last: lastName
+          },
+          email: data.user.username,
+          // This info should be added once user selects Institution
+          enrolments: {
+            BCIT: {
+              databaseName: "bcit-students",
+              name: "British Columbia Institute of Technology",
+              studentId: "A01036028"
+            }
+          },
+          currentInstitution: "BCIT"
         }
+
         dispatch(setAuthedUser(userInfo))
       })
       .catch((error) => {
@@ -56,7 +72,21 @@ export function signInUserViaEmail(email, password) {
 
         const userInfo = {
           username: user.signInUserSession.idToken.payload.email,
-          userId: user.signInUserSession.idToken.payload.sub
+          userId: user.signInUserSession.idToken.payload.sub,
+          // This info would actually be fetched from the Newt database
+          name: {
+            first: 'Nehal',
+            last: 'Udyavar'
+          },
+          email: user.signInUserSession.idToken.payload.email,
+          enrolments: {
+            BCIT: {
+              databaseName: "bcit-students",
+              name: "British Columbia Institute of Technology",
+              studentId: "A01036028"
+            }
+          },
+          currentInstitution: "BCIT"
         }
         dispatch(setAuthedUser(userInfo))
       })
