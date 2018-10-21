@@ -5,6 +5,7 @@ import assignments from './assignments'
 import announcements from './announcements'
 import quizzes from './quizzes'
 import grades from './grades'
+import info from './info'
 import authedUser from './authedUser'
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
   quizzes,
   grades,
   authedUser,
+  info,
   loadingBar: loadingBarReducer
 })

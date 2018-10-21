@@ -22,8 +22,13 @@ Amplify.configure({
     endpoints: [
       {
         name: "newt-api-trial",
-        endpoint: config.apiGateway.URL,
-        region: config.apiGateway.REGION
+        endpoint: config.apiGateway.newt.URL,
+        region: config.apiGateway.newt.REGION
+      },
+      {
+        name: "students-api-trial",
+        endpoint: config.apiGateway.students.URL,
+        region: config.apiGateway.students.REGION
       }
     ]
   }

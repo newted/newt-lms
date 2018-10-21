@@ -1,18 +1,37 @@
-import { showLoading, hideLoading } from 'react-redux-loading'
-import { getCourses } from './courses'
-import { getAllAssignments } from './assignments'
-import { getAllAnnouncements } from './announcements'
-import { getAllQuizzes } from './quizzes'
+import { API } from 'aws-amplify'
 
-export function handleInitialData(studentId) {
+export const REQUEST_INFO = 'REQUEST_INFO'
+export const RECEIVE_INFO = 'RECEIVE_INFO'
+
+function requestInfo() {
+  return {
+    type: REQUEST_INFO
+  }
+}
+
+function receiveInfo(info) {
+  return {
+    type: RECEIVE_INFO,
+    info
+  }
+}
+
+export function getInfo() {
   return (dispatch) => {
-    dispatch(showLoading())
-    Promise.all([
-      dispatch(getCourses()),
-      dispatch(getAllAssignments(studentId)),
-      dispatch(getAllAnnouncements(studentId)),
-      dispatch(getAllQuizzes(studentId))
-    ])
-    .then(() => dispatch(hideLoading()))
+    dispatch(requestInfo())
+
+    // let init = {
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Access-Control-Allow-Credentials": true,
+    //   }
+    // }
+
+    return API.get("students-api-trial", "/courses")
+      .then((response) => {
+        const info = response
+
+        console.log(info)
+      })
   }
 }

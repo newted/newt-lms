@@ -6,10 +6,20 @@ import { Redirect } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Table from '../components/Table'
+// API
+import { getInfo } from '../actions/shared'
 // Helpers
 import { formatDataForTable, statusDueDateSort } from '../utils/helpers'
 
 class Dashboard extends Component {
+  componentDidMount() {
+    const { authedUser, dispatch } = this.props
+
+    if (authedUser.exists) {
+      dispatch(getInfo())
+    }
+  }
+
   render() {
     const {
       authedUser, announcementFields, announcementList, assignmentFields,
